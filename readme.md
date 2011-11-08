@@ -1,6 +1,12 @@
 # Color Schemer
 
-## Color schemes made easy with Sass
+#### Color schemes made easy with Sass
+
+## Using color schemer
+
+### Compass
+
+### Sass file
 
 ## Schemes
 
