@@ -14,7 +14,7 @@ $color-scheme: mono !default
 $hue-offset: 20 !default
 $brightness-offset: 10% !default
 
-
+// Normalizer credit to Mason Wendell: https://github.com/canarymason/The-Coding-Designers-Survival-Kit/blob/master/sass/partials/lib/variables/_color_schemes.sass
 @function equalize($color)
   @return hsl(hue($color), 100%, 50%)
 
@@ -69,9 +69,11 @@ $brightness-offset: 10% !default
     @warn "Oops! You didn’t properly define $color-scheme (complement, triad...)"
   @warn "Oops! You didn’t properly define $color-location (primary, secondary...)"
 
+// Write your basic color scheme
 $primary: color-schemer(primary) !default
 $secondary: color-schemer(secondary) !default
 $tertiary: color-schemer(tertiary) !default
 $quadrary: color-schemer(quadrary) !default
 
+// Tell other files that this is loaded.
 $color-schemer-loaded: true
