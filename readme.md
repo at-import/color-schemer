@@ -6,7 +6,17 @@
 
 ### Compass
 
+Install ruby-gem
+
+Usage requires Sass. Visit [sass-lang.com](http://sass-lang.com) to learn more and install.
+
+`gem install color-schemer`
+
+Then add `require 'color-schemer'` to your Compass config file.
+
 ### Sass file
+
+Copy and link to the Sass file in your project.
 
 ## Schemes
 
