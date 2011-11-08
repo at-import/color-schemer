@@ -1,15 +1,27 @@
-@import ../sass/color-schemer
+// Color schemes to choose from
+//    mono
+//    complement
+//    triad
+//    tetrad
+//    analogic
+//    accented-analogic
 
-$base-color: #f00
-$color-scheme: mono
+$base-color: #BE8E26
+$color-scheme: analogic
 $hue-offset: 20
 $brightness-offset: 10%
 
-$primary: color-schemer(primary)
-$secondary: color-schemer(secondary)
-$tertiary: color-schemer(tertiary)
+// import your color schemer after you define your own defaults and it will automatically generate variables.
+@import ../sass/color-schemer
+
+// OK, but need to adjust them? Just redefine your color scheme here
+$primary: equalize(color-schemer(primary))
+$secondary: lighten(color-schemer(secondary), 10%)
+$tertiary: darken(color-schemer(tertiary), 15%)
 $quadrary: color-schemer(quadrary)
 
+
+// Then just drop your variables into your code.
 .primary
   background-color: $primary
 .secondary
@@ -21,7 +33,7 @@ $quadrary: color-schemer(quadrary)
 
 
 
-//
+// Just some basic page styles
 body, html
   padding: 0
   margin: 0
