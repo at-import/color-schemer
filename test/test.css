@@ -1,0 +1,22 @@
+.primary {
+  background-color: red; }
+
+.secondary {
+  background-color: #ff3333; }
+
+.tertiary {
+  background-color: #ff6666; }
+
+.quadrary {
+  background-color: #cc0000; }
+
+body, html {
+  padding: 0;
+  margin: 0;
+  height: 100%; }
+
+div {
+  display: block;
+  width: 25%;
+  height: 100%;
+  float: left; }

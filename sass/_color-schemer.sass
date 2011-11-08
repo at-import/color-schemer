@@ -1,0 +1,72 @@
+// Define color schemes quickly
+
+// Color schemes to choose from
+//    mono
+//    complement
+//    triad
+//    tetrad
+//    analogic
+//    accented-analogic
+
+$color-location: primary !default
+$base-color: #f00 !default
+$color-scheme: mono !default
+$hue-offset: 20 !default
+$brightness-offset: 10% !default
+
+
+@function equalize($color)
+  @return hsl(hue($color), 100%, 50%)
+
+@function color-schemer($color-location, $base-color, $color-scheme, $hue-offset)
+  // Primary, just return the base-color.
+  @if $color-location == primary
+    @return $base-color
+  // Secondary colors
+  @if $color-location == secondary
+    @if $color-scheme == mono
+      @return lighten($base-color, $brightness-offset)
+    @if $color-scheme == complement
+      @return invert($base-color)
+    @if $color-scheme == triad
+      @return adjust-hue(complement($base-color), $hue-offset)
+    @if $color-scheme == tetrad
+      @return complement($base-color)
+    @if $color-scheme == analogic
+      @return adjust-hue($base-color, $hue-offset)
+    @if $color-scheme == accented-analogic
+      @return adjust-hue($base-color, $hue-offset)
+    @warn "Oops! You didn’t properly define $color-scheme (complement, triad...)"
+  // Tertiary colors
+  @if $color-location == tertiary
+    @if $color-scheme == mono
+      @return lighten($base-color, $brightness-offset * 2)
+    @if $color-scheme == complement
+      @return lighten($base-color, $brightness-offset)
+    @if $color-scheme == triad
+      @return adjust-hue(complement($base-color), -$hue-offset)
+    @if $color-scheme == tetrad
+      @return adjust-hue($base-color, $hue-offset)
+    @if $color-scheme == analogic
+      @return adjust-hue($base-color, -$hue-offset)
+    @if $color-scheme == accented-analogic
+      @return adjust-hue($base-color, -$hue-offset)
+    @warn "Oops! You didn’t properly define $color-scheme (complement, triad...)"
+  // Quadrary colors
+  @if $color-location == quadrary
+    @if $color-scheme == mono
+      @return darken($base-color, $brightness-offset)
+    @if $color-scheme == complement
+      @return darken($base-color, $brightness-offset)
+    @if $color-scheme == triad
+      @return darken($base-color, $brightness-offset)
+    @if $color-scheme == tetrad
+      @return adjust-hue(complement($base-color), $hue-offset)
+    @if $color-scheme == analogic
+      @return darken($base-color, $brightness-offset)
+    @if $color-scheme == accented-analogic
+      @return complement($base-color)
+    @warn "Oops! You didn’t properly define $color-scheme (complement, triad...)"
+  @warn "Oops! You didn’t properly define $color-location (primary, secondary...)"
+
+$color-schemer-loaded: true

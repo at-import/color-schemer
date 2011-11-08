@@ -1,0 +1,34 @@
+@import ../sass/color-schemer
+
+$base-color: #f00
+$color-scheme: mono
+$hue-offset: 20
+$brightness-offset: 10%
+
+$primary: color-schemer(primary)
+$secondary: color-schemer(secondary)
+$tertiary: color-schemer(tertiary)
+$quadrary: color-schemer(quadrary)
+
+.primary
+  background-color: $primary
+.secondary
+  background-color: $secondary
+.tertiary
+  background-color: $tertiary
+.quadrary
+  background-color: $quadrary
+
+
+
+//
+body, html
+  padding: 0
+  margin: 0
+  height: 100%
+
+div
+  display: block
+  width: 25%
+  height: 100%
+  float: left
