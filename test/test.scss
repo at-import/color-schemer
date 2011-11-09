@@ -7,7 +7,7 @@
 //    accented-analogic
 
 // Pick the base color for your scheme:
-$base-color: #4194B4;
+$base-color: #00CCFF;
 
 // Select your scheme from the list and place it here:
 $color-scheme: tetrad;
@@ -19,7 +19,7 @@ $hue-offset: 30;
 $brightness-offset: 10%;
 
 // Use Claude Boutet complements instead of RGB complements.
-$color-theory: boutet;
+//$color-theory: boutet;
 
 // import your color schemer after you define your own defaults and it will automatically generate variables.
 @import "../sass/color-schemer";
