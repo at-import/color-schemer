@@ -18,6 +18,13 @@ $brightness-offset: 10% !default
 @function equalize($color)
   @return hsl(hue($color), 100%, 50%)
 
+// Complement based on Claude Boutet's color wheel
+@function boutet-complement($color)
+  $hue: hue($color)
+  @warn $hue
+  @return adjust-hue(invert($color), $hue - 60)
+  
+
 @function color-schemer($color-location, $base-color, $color-scheme, $hue-offset)
   // Primary, just return the base-color.
   @if $color-location == primary
@@ -27,7 +34,7 @@ $brightness-offset: 10% !default
     @if $color-scheme == mono
       @return lighten($base-color, $brightness-offset)
     @if $color-scheme == complement
-      @return invert($base-color)
+      @return complement($base-color)
     @if $color-scheme == triad
       @return adjust-hue(complement($base-color), $hue-offset)
     @if $color-scheme == tetrad
