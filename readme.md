@@ -27,7 +27,7 @@ Color schemer writes default $primary, $secondary ... variables for you and thes
 Color schemer extends the basic Sass color functions to provide additional support for color schemes and manipulation. The basic functions included are as follows:
 
 * `color-schemer($color-location [primary, secondary, tertiary, quadrary])` — Builds out color schemes.
-* * `$base-color, $color-scheme [mono, complement, triad, tetrad, analogic, accented-analogic], $hue-offset` — Additional options for the above function.
+    * `$base-color, $color-scheme [mono, complement, triad, tetrad, analogic, accented-analogic], $hue-offset` — Additional options for the above function.
 * `equalize($color)` — Removes any tints and shades from a color.
 * `boutet-complement($color)` — A complement adjusted to roughly match traditional color theory instead of RGB theory. So the complement of red will be green.
 
