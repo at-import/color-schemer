@@ -50,6 +50,14 @@ Defining variables will change your color scheme and how it behaves:
 * analogic
 * accented-analogic
 
+## Color Functions
+
+Color schemer also includes two new color functions which serve as alternates to the `lighten()` and `darken()` functions in Sass. `tint()` and `shade()` allow you to mix in amounts of white or black to any color. 
+
+### Use
+  `tint($color, $percent)`  
+  `shade($color, $percent)`  
+
 ## Inspiration
 
 * http://colorschemedesigner.com/
