@@ -96,7 +96,14 @@ $equalize: false !default
     @return adjust-hue(invert($color), -57)
   @if $hue == 35
     @return adjust-hue(invert($color), -60)
-  
+
+// Add percentage of white to a color
+@function tint($color, $percent)
+  @return mix(white, $color, $percent)
+
+// Add percentage of black to a color
+@function shade($color, $percent)
+  @return mix(black, $color, $percent)
 
 @function color-schemer($color-location, $base-color, $color-scheme, $hue-offset)
   // Primary, just return the base-color.
