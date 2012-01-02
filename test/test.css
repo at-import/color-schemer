@@ -1,14 +1,14 @@
 .primary {
-  background-color: #00ccff; }
+  background-color: red; }
 
 .secondary {
-  background-color: #004cff; }
+  background-color: aqua; }
 
 .tertiary {
-  background-color: #ff3300; }
+  background-color: #ff3333; }
 
 .quadrary {
-  background-color: #ffb300; }
+  background-color: #cc0000; }
 
 body, html {
   padding: 0;
