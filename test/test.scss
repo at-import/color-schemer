@@ -7,7 +7,7 @@
 //    accented-analogic
 
 // Pick the base color for your scheme:
-$base-color: #00CCFF;
+$base-color: #0083f6;
 
 // Select your scheme from the list and place it here:
 $color-scheme: tetrad;
@@ -16,10 +16,10 @@ $color-scheme: tetrad;
 $hue-offset: 30;
 
 // How distant do you want tints and shades to be from their base:
-$brightness-offset: 10%;
+$brightness-offset: 10;
 
-// Use Claude Boutet complements instead of RGB complements.
-//$color-theory: boutet;
+// rgb or ryb
+//$color-theory: ryb;
 
 // Set saturation to 100% and lightness to 50% on all colors
 //$equalize: true;

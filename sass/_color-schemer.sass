@@ -20,8 +20,8 @@ $equalize: false !default
 @function equalize($color)
   @return hsl(hue($color), 100%, 50%)
 
-// Complement based on Claude Boutet's color wheel
-@function boutet-complement($color)
+// Complement based on RYB theory
+@function ryb($color)
   $hue: round(hue($color)/ 10) // find and round hue
   // Manually adjusted values until these can be mathmatically explained.
   @if $hue == 0
@@ -116,12 +116,12 @@ $equalize: false !default
     @if $color-scheme == mono
       @return lighten($base-color, $brightness-offset)
     @if $color-scheme == complement
-      @if $color-theory == boutet
-        @return boutet-complement($base-color)
+      @if $color-theory == ryb
+        @return ryv($base-color)
       @return complement($base-color)
     @if $color-scheme == triad
-      @if $color-theory == boutet
-        @return adjust-hue(boutet-complement($base-color), $hue-offset)
+      @if $color-theory == ryb
+        @return adjust-hue(ryb($base-color), $hue-offset)
       @return adjust-hue(complement($base-color), $hue-offset)
     @if $color-scheme == tetrad
       @return adjust-hue($base-color, $hue-offset)
@@ -137,12 +137,12 @@ $equalize: false !default
     @if $color-scheme == complement
       @return lighten($base-color, $brightness-offset)
     @if $color-scheme == triad
-      @if $color-theory == boutet
-        @return adjust-hue(boutet-complement($base-color), -$hue-offset)
+      @if $color-theory == ryb
+        @return adjust-hue(ryb($base-color), -$hue-offset)
       @return adjust-hue(complement($base-color), -$hue-offset)
     @if $color-scheme == tetrad
-      @if $color-theory == boutet
-        @return boutet-complement($base-color)
+      @if $color-theory == ryb
+        @return ryb($base-color)
       @return complement($base-color)
     @if $color-scheme == analogic
       @return adjust-hue($base-color, -$hue-offset)
@@ -158,14 +158,14 @@ $equalize: false !default
     @if $color-scheme == triad
       @return darken($base-color, $brightness-offset)
     @if $color-scheme == tetrad
-      @if $color-theory == boutet
-        @return adjust-hue(boutet-complement($base-color), $hue-offset)
+      @if $color-theory == ryb
+        @return adjust-hue(ryb($base-color), $hue-offset)
       @return adjust-hue(complement($base-color), $hue-offset)
     @if $color-scheme == analogic
       @return darken($base-color, $brightness-offset)
     @if $color-scheme == accented-analogic
-      @if $color-theory == boutet
-        @return boutet-complement($base-color)
+      @if $color-theory == ryb
+        @return ryb($base-color)
       @return complement($base-color)
     @warn "Oops! You didn’t properly define $color-scheme (complement, triad...)"
   @warn "Oops! You didn’t properly define $color-location (primary, secondary...)"
