@@ -2,21 +2,13 @@
 
 #### Color schemes made easy with Sass
 
-## Installing
+## Install
 
-### Compass
+`gem install color-schemer` in your terminal.
 
-Install ruby-gem
+`require 'color-schemer'` to your Compass config file.
 
-Usage requires Sass. Visit [sass-lang.com](http://sass-lang.com) to learn more and install.
-
-`gem install color-schemer`
-
-Then add `require 'color-schemer'` to your Compass config file.
-
-### Sass file
-
-Copy and link to the Sass file in your project.
+`@import 'color-schemer'` to your stylesheet.
 
 ### Cascade
 
@@ -38,7 +30,7 @@ Defining variables will change your color scheme and how it behaves:
 * `$color-scheme: [mono, complement, triad, tetrad, analogic, accented-analogic]` — Choices of different color schemes.
 * `$hue-offset: 20` — How many degrees to offset hue shifts in triad, tetrad, analogic, and accented-analogic schemes.
 * `$brightness-offset: 10%` — Differences in lights and darks in the color scheme.
-* `$color-theory: [rgb, boutet]` — Switch between RGB and the traditional Boutet color theories.
+* `$color-model: [rgb, ryb]` — Switch between RGB and the traditional RYB color model.
 * `$equalize: [true, false]` — Choose weather or not to equalize the base-color when generating a scheme.
 
 ## Schemes
