@@ -105,7 +105,7 @@ $equalize: false !default
 @function shade($color, $percent)
   @return mix(black, $color, $percent)
 
-@function color-schemer($color-location:$primary,$base-color:$base-color,$color-scheme:$color-scheme,$hue-offset:$hue-offset)
+@function color-schemer($color-location:$color-location,$base-color:$base-color,$color-scheme:$color-scheme,$hue-offset:$hue-offset)
   // Primary, just return the base-color.
   @if $equalize
     $base-color: equalize($base-color)
