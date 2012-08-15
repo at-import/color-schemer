@@ -23,79 +23,83 @@ $equalize: false !default
 // Complement based on Claude Boutet's color wheel
 @function boutet-complement($color)
   $hue: round(hue($color)/ 10) // find and round hue
+  $newhue: $hue
+  $sat: saturation($color)
+  $lite: lightness($color)
   // Manually adjusted values until these can be mathmatically explained.
   @if $hue == 0
-    @return adjust-hue(invert($color), -60) // Start with red
+    $newhue: hue(adjust-hue(invert($color), -60)) // Start with red
   @if $hue == 1
-    @return adjust-hue(invert($color), -50)
+    $newhue: hue(adjust-hue(invert($color), -50))
   @if $hue == 2
-    @return adjust-hue(invert($color), -40)
+    $newhue: hue(adjust-hue(invert($color), -40))
   @if $hue == 3
-    @return adjust-hue(invert($color), -25)
+    $newhue: hue(adjust-hue(invert($color), -25))
   @if $hue == 4
-    @return adjust-hue(invert($color), 0)
+    $newhue: hue(adjust-hue(invert($color), 0))
   @if $hue == 5
-    @return adjust-hue(invert($color), 25)
+    $newhue: hue(adjust-hue(invert($color), 25))
   @if $hue == 6
-    @return adjust-hue(invert($color), 38)
+    $newhue: hue(adjust-hue(invert($color), 38))
   @if $hue == 7
-    @return adjust-hue(invert($color), 44)
+    $newhue: hue(adjust-hue(invert($color), 44))
   @if $hue == 8
-    @return adjust-hue(invert($color), 52)
+    $newhue: hue(adjust-hue(invert($color), 52))
   @if $hue == 9
-    @return adjust-hue(invert($color), 58)
+    $newhue: hue(adjust-hue(invert($color), 58))
   @if $hue == 10
-    @return adjust-hue(invert($color), 59)
+    $newhue: hue(adjust-hue(invert($color), 59))
   @if $hue == 11
-    @return adjust-hue(invert($color), 60)
+    $newhue: hue(adjust-hue(invert($color), 60))
   @if $hue == 12
-    @return adjust-hue(invert($color), 60) // Green is halfway through the Boutet scale.
+    $newhue: hue(adjust-hue(invert($color), 60)) // Green is halfway through the Boutet scale.
   @if $hue == 13
-    @return adjust-hue(invert($color), 55)
+    $newhue: hue(adjust-hue(invert($color), 55))
   @if $hue == 14
-    @return adjust-hue(invert($color), 50)
+    $newhue: hue(adjust-hue(invert($color), 50))
   @if $hue == 15
-    @return adjust-hue(invert($color), 45)
+    $newhue: hue(adjust-hue(invert($color), 45))
   @if $hue == 16
-    @return adjust-hue(invert($color), 40)
+    $newhue: hue(adjust-hue(invert($color), 40))
   @if $hue == 17
-    @return adjust-hue(invert($color), 35)
+    $newhue: hue(adjust-hue(invert($color), 35))
   @if $hue == 18
-    @return adjust-hue(invert($color), 30)
+    $newhue: hue(adjust-hue(invert($color), 30))
   @if $hue == 19
-    @return adjust-hue(invert($color), 25)
+    $newhue: hue(adjust-hue(invert($color), 25))
   @if $hue == 20
-    @return adjust-hue(invert($color), 20)
+    $newhue: hue(adjust-hue(invert($color), 20))
   @if $hue == 21
-    @return adjust-hue(invert($color), 15)
+    $newhue: hue(adjust-hue(invert($color), 15))
   @if $hue == 22
-    @return adjust-hue(invert($color), -5)
+    $newhue: hue(adjust-hue(invert($color), -5))
   @if $hue == 23
-    @return adjust-hue(invert($color), -8)
+    $newhue: hue(adjust-hue(invert($color), -8))
   @if $hue == 24
-    @return adjust-hue(invert($color), -17)
+    $newhue: hue(adjust-hue(invert($color), -17))
   @if $hue == 25
-    @return adjust-hue(invert($color), -25)
+    $newhue: hue(adjust-hue(invert($color), -25))
   @if $hue == 26
-    @return adjust-hue(invert($color), -30)
+    $newhue: hue(adjust-hue(invert($color), -30))
   @if $hue == 27
-    @return adjust-hue(invert($color), -35)
+    $newhue: hue(adjust-hue(invert($color), -35))
   @if $hue == 28
-    @return adjust-hue(invert($color), -40)
+    $newhue: hue(adjust-hue(invert($color), -40))
   @if $hue == 29
-    @return adjust-hue(invert($color), -43)
+    $newhue: hue(adjust-hue(invert($color), -43))
   @if $hue == 30
-    @return adjust-hue(invert($color), -46)
+    $newhue: hue(adjust-hue(invert($color), -46))
   @if $hue == 31
-    @return adjust-hue(invert($color), -49)
+    $newhue: hue(adjust-hue(invert($color), -49))
   @if $hue == 32
-    @return adjust-hue(invert($color), -52)
+    $newhue: hue(adjust-hue(invert($color), -52))
   @if $hue == 33
-    @return adjust-hue(invert($color), -54)
+    $newhue: hue(adjust-hue(invert($color), -54))
   @if $hue == 34
-    @return adjust-hue(invert($color), -57)
+    $newhue: hue(adjust-hue(invert($color), -57))
   @if $hue == 35
-    @return adjust-hue(invert($color), -60)
+    $newhue: hue(adjust-hue(invert($color), -60))
+  @return hsl($newhue,$sat,$lite)
 
 // Add percentage of white to a color
 @function tint($color, $percent)
