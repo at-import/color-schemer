@@ -1,0 +1,34 @@
+/* line 42, ../../sass/test.scss */
+.primary {
+  background-color: #0083f6;
+}
+
+/* line 44, ../../sass/test.scss */
+.secondary {
+  background-color: #0008f6;
+}
+
+/* line 46, ../../sass/test.scss */
+.tertiary {
+  background-color: #f67300;
+}
+
+/* line 48, ../../sass/test.scss */
+.quadrary {
+  background-color: #f6ee00;
+}
+
+/* line 54, ../../sass/test.scss */
+body, html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* line 59, ../../sass/test.scss */
+div {
+  display: block;
+  width: 25%;
+  height: 100%;
+  float: left;
+}
