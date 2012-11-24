@@ -1,3 +1,4 @@
+@import "compass";
 @import "color-schemer";
 
 // Color schemes to choose from
@@ -9,16 +10,16 @@
 //    accented-analogic
 
 // Pick the base color for your scheme:
-$base-color: #0083f6;
+$base-color: #0ff;
 
 // Select your scheme from the list and place it here:
-$color-scheme: tetrad;
+// $color-scheme: tetrad;
 
 // How distant do you want the hue offset to be:
-$hue-offset: 30;
+// $hue-offset: 30;
 
 // How distant do you want tints and shades to be from their base:
-$brightness-offset: 10;
+// $brightness-offset: 10;
 
 // rgb or ryb
 // $color-model: ryb;
@@ -57,6 +58,7 @@ body, html {
   height: 100%; }
 
 div {
+  @include transition(background-color .25s);
   display: block;
   width: 25%;
   height: 100%;
