@@ -1,0 +1,15 @@
+// Color schemes to choose from
+//    mono
+//    complement
+//    triad
+//    tetrad
+//    analogic
+//    accented-analogic
+
+$color-location: primary !default;
+$base-color: #f00 !default;
+$color-scheme: mono !default;
+$hue-offset: 20 !default;
+$brightness-offset: 10% !default;
+$color-model: rgb !default;
+$equalize: false !default;

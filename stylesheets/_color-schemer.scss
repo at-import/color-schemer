@@ -1,0 +1,10 @@
+// Define color schemes quickly
+
+@import "color-schemer/defaults";
+
+@import "color-schemer/equalize";
+@import "color-schemer/tint-shade";
+@import "color-schemer/color-adjustments";
+
+// Tell other files that this is loaded.
+$color-schemer-loaded: true;

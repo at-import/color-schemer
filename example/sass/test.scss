@@ -1,19 +1,11 @@
 @import "compass";
 @import "color-schemer";
 
-// Color schemes to choose from
-//    mono
-//    complement
-//    triad
-//    tetrad
-//    analogic
-//    accented-analogic
-
 // Pick the base color for your scheme:
 $base-color: #0ff;
 
 // Select your scheme from the list and place it here:
-// $color-scheme: tetrad;
+$color-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
 // $hue-offset: 30;
@@ -21,16 +13,15 @@ $base-color: #0ff;
 // How distant do you want tints and shades to be from their base:
 // $brightness-offset: 10;
 
-// rgb or ryb
-// $color-model: ryb;
+// $color-model: ryb; // rgb, ryb
 
 // Set saturation to 100% and lightness to 50% on all colors
 //$equalize: true;
 
-$primary: color-schemer(primary);
-$secondary: color-schemer(secondary);
-$tertiary: color-schemer(tertiary);
-$quadrary: color-schemer(quadrary);
+// $primary: color-schemer(primary);
+// $secondary: color-schemer(secondary);
+// $tertiary: color-schemer(tertiary);
+// $quadrary: color-schemer(quadrary);
 
 // OK, but need to adjust them? Just redefine your color scheme here. If you wish to define all of these the color-schemer file can be imported at the top of this file.
 //$primary: equalize(color-schemer(primary));
@@ -40,14 +31,14 @@ $quadrary: color-schemer(quadrary);
 
 
 // Then just drop your variables into your code.
-.primary {
-  background-color: $primary; }
-.secondary {
-  background-color: $secondary; }
-.tertiary {
-  background-color: $tertiary; }
-.quadrary {
-  background-color: $quadrary; }
+// .primary {
+//   background-color: $primary; }
+// .secondary {
+//   background-color: $secondary; }
+// .tertiary {
+//   background-color: $tertiary; }
+// .quadrary {
+//   background-color: $quadrary; }
 
 
 
