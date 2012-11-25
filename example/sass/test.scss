@@ -33,20 +33,32 @@ $color-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-an
 body, html, ul { padding: 0; margin: 0; width: 100%; height: 100%; background: $base-color;}
 ul { display: table; }
 li { @include transition(all .25s); display: none; width: 1px; }
+$counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-cell; background-color: $color; } $counter: $counter + 1; }
 
-li:nth-child(1) { display: table-cell;
-  background: ryb-complement(green);
-}
-li:nth-child(2) { display: table-cell;
-  background:     complement(green);
-}
 
-@for $i from 1 to 360 {
-  li:nth-child(#{$i}) {
-    display: block;
-    height: 100%;
-    width: (100% / 360);
-    float: left;
-    background: ryb-adjust-hue(red, $i);
-  }
-}
+@include stop(
+  ryb-complement(orange)
+);
+@include stop(
+  complement(orange)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
