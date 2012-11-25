@@ -1,0 +1,13 @@
+@function set-hue($color, $hue) {
+  @return hsl($hue, saturation($color), lightness($color));
+}
+
+@function set-saturation($color, $saturation) {
+  @return hsl(hue($color), $saturation, lightness($color));
+}
+
+@function set-lightness($color, $lightness) {
+  @return hsl(hue($color), saturation($color), $lightness);
+}
+
+

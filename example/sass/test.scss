@@ -2,7 +2,7 @@
 @import "color-schemer";
 
 // Pick the base color for your scheme:
-$base-color: #0ff;
+$base-color: #f00;
 
 // Select your scheme from the list and place it here:
 $color-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
@@ -29,28 +29,24 @@ $color-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-an
 //$tertiary: shade(color-schemer(tertiary), 15%);
 //$quadrary: adjust-color(color-schemer(quadrary), $saturation: 10%);
 
-
-// Then just drop your variables into your code.
-// .primary {
-//   background-color: $primary; }
-// .secondary {
-//   background-color: $secondary; }
-// .tertiary {
-//   background-color: $tertiary; }
-// .quadrary {
-//   background-color: $quadrary; }
-
-
-
 // Just some basic page styles
-body, html {
-  padding: 0;
-  margin: 0;
-  height: 100%; }
+body, html, ul { padding: 0; margin: 0; width: 100%; height: 100%; background: $base-color;}
+ul { display: table; }
+li { @include transition(all .25s); display: none; width: 1px; }
 
-div {
-  @include transition(background-color .25s);
-  display: block;
-  width: 25%;
-  height: 100%;
-  float: left; }
+li:nth-child(1) { display: table-cell;
+  background: ryb-complement(green);
+}
+li:nth-child(2) { display: table-cell;
+  background:     complement(green);
+}
+
+@for $i from 1 to 360 {
+  li:nth-child(#{$i}) {
+    display: block;
+    height: 100%;
+    width: (100% / 360);
+    float: left;
+    background: ryb-adjust-hue(red, $i);
+  }
+}
