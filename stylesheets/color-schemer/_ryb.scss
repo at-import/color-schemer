@@ -1,45 +1,43 @@
-// THE FOLLOWING CODE FINDS THE $ryb VAR
-// IT IS OUTPUT TO CONSOLE AND NOT INTENDED
-// FOR PRODUCTION AS IT IS SLOW.
+// RYB color interpolation
+@function ryb($hue) {
 
-// $ryb: 0deg;
+  // remove units on $hue
+  @if unit($hue) == deg {
+    $hue: $hue / 1deg;
+  }
 
-// @for $i from 1 through 360 {
-//   @if $i < (360/3) {
-//     $ryb: append($ryb, hue(mix(#ff0, #f00, percentage($i / (360/3) ))));
-//   }
-//   @if $i <= 360 / 2 and  $i > (360/3) and $i < (360 / 3 * 2) {
-//     $ryb: append($ryb, hue(mix(#0f0, #ff0, percentage(($i - (360 / 6 * 2)) / (360 / 6)))));
-//   }
-//   @if $i > 360 / 2 and  $i < (360 / 3 * 2) {
-//     $ryb: append($ryb, hue(mix(#00f, #0f0, percentage(($i - (360 / 6 * 3)) / (360 / 6)) )));
-//   }
-//   // Blue to red does not need conversion.
-//   @if $i >= (360 / 3 * 2) {
-//     $ryb: append($ryb, round($i * 1deg));
-//   }
-// }
+  // interpolate red and yellow.
+  @if $hue <= (360/3) {
+    @return hue(mix(#ff0, #f00, percentage($hue / (360/3) )));
+  }
+  // interpolate yellow and green.
+  @if $hue <= 360 / 2 and  $hue > (360/3) and $hue <= (360 / 3 * 2) {
+    @return hue(mix(#0f0, #ff0, percentage(($hue - (360 / 6 * 2)) / (360 / 6))));
+  }
+  // interpolate green and blue.
+  @if $hue > 360 / 2 and  $hue < (360 / 3 * 2) {
+    @return hue(mix(#00f, #0f0, percentage(($hue - (360 / 6 * 3)) / (360 / 6)) ));
+  }
+  // Blue to red does not need conversion.
+  @if $hue >= (360 / 3 * 2) {
+    @return $hue * 1deg;
+  }
+}
 
-// @debug length($ryb);
-// @debug $ryb;
-
-
-// RYB output from above:
-$ryb: 0deg 0.47059deg 0.94118deg 1.41176deg 1.88235deg 2.35294deg 2.82353deg 3.29412deg 3.76471deg 4.47059deg 4.94118deg 5.41176deg 5.88235deg 6.37795deg 6.82353deg 7.29412deg 7.76471deg 8.47059deg 8.94118deg 9.41176deg 9.88235deg 10.35294deg 10.82353deg 11.29412deg 12deg 12.47059deg 12.94118deg 13.41176deg 13.88235deg 14.35294deg 14.82353deg 15.29412deg 16deg 16.47059deg 16.94118deg 17.48031deg 17.88235deg 18.35294deg 18.82353deg 19.29412deg 19.76471deg 20.47059deg 20.94118deg 21.49606deg 21.88235deg 22.35294deg 22.82353deg 23.29412deg 24deg 24.47059deg 24.94118deg 25.41176deg 25.88235deg 26.35294deg 26.82353deg 27.29412deg 27.76471deg 28.47059deg 29.05512deg 29.41176deg 29.88235deg 30.35294deg 30.82353deg 31.29412deg 32deg 32.47059deg 32.94118deg 33.41176deg 33.88235deg 34.35294deg 34.82353deg 35.29412deg 36deg 36.47059deg 36.94118deg 37.41176deg 37.88235deg 38.35294deg 38.82353deg 39.29412deg 39.76471deg 40.47059deg 40.94118deg 41.41176deg 41.88235deg 42.35294deg 42.82353deg 43.29412deg 44deg 44.47059deg 44.94118deg 45.41176deg 45.88235deg 46.35294deg 46.82353deg 47.29412deg 48deg 48.47059deg 48.94118deg 49.41176deg 49.88235deg 50.35294deg 50.82353deg 51.29412deg 52deg 52.47059deg 52.94118deg 53.41176deg 53.88235deg 54.35294deg 54.82353deg 55.29412deg 55.76471deg 56.47059deg 56.94118deg 57.41176deg 57.88235deg 58.35294deg 58.82353deg 59.29412deg 61.17647deg 62.11765deg 63.05882deg 64deg 65.17647deg 66.11765deg 67.05882deg 68deg 69.17647deg 70.11765deg 71.05882deg 72deg 73.17647deg 74.11765deg 75.05882deg 76deg 77.17647deg 78.11765deg 79.05882deg 80deg 81.17647deg 82.11765deg 83.05882deg 84deg 85.17647deg 86.11765deg 87.05882deg 88deg 89.05512deg 90.11765deg 91.05882deg 92deg 93.17647deg 94.11765deg 95.05882deg 96deg 97.17647deg 98.11765deg 99.05882deg 100deg 101.17647deg 102.11765deg 103.05882deg 104deg 105.17647deg 106.11765deg 107.05882deg 108.23529deg 109.17647deg 110.11765deg 111.05882deg 112.23529deg 113.17647deg 114.11765deg 115.05882deg 116deg 117.17647deg 118.11765deg 119.05882deg 120deg 120.96deg 121.95122deg 122.97521deg 124.03361deg 125.40773deg 126.55022deg 127.73333deg 128.95928deg 130.55556deg 131.88679deg 133.26923deg 135deg 136.58291deg 138.15385deg 139.79058deg 141.81818deg 143.73626deg 145.61798deg 147.58621deg 149.64706deg 152.36364deg 154.65839deg 157.07006deg 160deg 162.97297deg 165.83333deg 168.85714deg 172.05882deg 176.33588deg 180deg 183.66412deg 187.5deg 191.14286deg 194.16667deg 197.02703deg 200deg 202.92994deg 205.34161deg 207.63636deg 209.82249deg 212.41379deg 214.38202deg 216.26374deg 218.18182deg 220.20942deg 221.84615deg 223.41709deg 225.29412deg 226.73077deg 228.11321deg 229.44444deg 231.04072deg 232.26667deg 233.44978deg 234.59227deg 235.6962deg 237.02479deg 238.04878deg 239.04deg 240deg 241deg 242deg 243deg 244deg 245deg 246deg 247deg 248deg 249deg 250deg 251deg 252deg 253deg 254deg 255deg 256deg 257deg 258deg 259deg 260deg 261deg 262deg 263deg 264deg 265deg 266deg 267deg 268deg 269deg 270deg 271deg 272deg 273deg 274deg 275deg 276deg 277deg 278deg 279deg 280deg 281deg 282deg 283deg 284deg 285deg 286deg 287deg 288deg 289deg 290deg 291deg 292deg 293deg 294deg 295deg 296deg 297deg 298deg 299deg 300deg 301deg 302deg 303deg 304deg 305deg 306deg 307deg 308deg 309deg 310deg 311deg 312deg 313deg 314deg 315deg 316deg 317deg 318deg 319deg 320deg 321deg 322deg 323deg 324deg 325deg 326deg 327deg 328deg 329deg 330deg 331deg 332deg 333deg 334deg 335deg 336deg 337deg 338deg 339deg 340deg 341deg 342deg 343deg 344deg 345deg 346deg 347deg 348deg 349deg 350deg 351deg 352deg 353deg 354deg 355deg 356deg 357deg 358deg 359deg 360deg;
-
-
+// Find the RYB hue instead of RGB hue of a color.
+// slow dumb loop at the moment.
 @function ryb-hue($color) {
   $round-hue: round(hue($color));
   // loop through RYB offset list until the location is found.
   @for $n from 0 through 10 {
     @for $i from 1 through 360 {
-      @if $round-hue == round(nth($ryb, $i)) + $n {
+      @if $round-hue == round(ryb($i)) + $n {
         @return $i * 1deg;
       }
     }
     @if $n != 0 {
       @for $i from 1 through 360 {
-        @if $round-hue == round(nth($ryb, $i)) - $n {
+        @if $round-hue == round(ryb($i)) - $n {
           @return $i * 1deg;
         }
       }
@@ -67,7 +65,7 @@ $ryb: 0deg 0.47059deg 0.94118deg 1.41176deg 1.88235deg 2.35294deg 2.82353deg 3.2
   }
 
   // return the correct hue from the list.
-  @return set-hue($color, nth($ryb, round($hue-adjust)));
+  @return set-hue($color, ryb(round($hue-adjust)));
 }
 
 // Returns the complement of a color.

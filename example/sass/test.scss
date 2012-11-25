@@ -37,28 +37,36 @@ $counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-ce
 
 
 @include stop(
-  ryb-complement(orange)
+  equalize(ryb-complement(red))
 );
 @include stop(
-  complement(orange)
+  equalize(ryb-complement(orange))
+);
+@include stop(
+  equalize(ryb-complement(yellow))
+);
+@include stop(
+  equalize(ryb-complement(green))
+);
+@include stop(
+  equalize(ryb-complement(blue))
+);
+@include stop(
+  equalize(ryb-complement(indigo))
+);
+@include stop(
+  equalize(ryb-complement(violet))
 );
 
 
+// writes a whole spectrum.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// @for $i from 1 to 360 {
+//   li:nth-child(#{$i}) {
+//     display: block;
+//     height: 100%;
+//     width: (100% / 360);
+//     float: left;
+//     background: ryb-adjust-hue(#f00, $i);
+//   }
+// }
