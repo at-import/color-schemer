@@ -1,13 +1,34 @@
+// RGB functions
+@function set-red($color, $red) {
+  @return rgba($red, green($color), blue($color), alpha($color));
+}
+
+@function set-green($color, $green) {
+  @return rgba(red($color), $green, blue($color), alpha($color));
+}
+
+@function set-blue($color, $blue) {
+  @return rgba(red($color), green($color), $blue, alpha($color));
+}
+
+
+// HSL Functions
 @function set-hue($color, $hue) {
-  @return hsl($hue, saturation($color), lightness($color));
+  @return hsla($hue, saturation($color), lightness($color), alpha($color));
+}
+
+@function set-ryb-hue($color, $hue) {
+  @return hsla(ryb-hue($hue), saturation($color), lightness($color), alpha($color));
 }
 
 @function set-saturation($color, $saturation) {
-  @return hsl(hue($color), $saturation, lightness($color));
+  @return hsla(hue($color), $saturation, lightness($color), alpha($color));
 }
 
 @function set-lightness($color, $lightness) {
-  @return hsl(hue($color), saturation($color), $lightness);
+  @return hsla(hue($color), saturation($color), $lightness, alpha($color));
 }
 
-
+@function set-alpha($color, $alpha) {
+  @return hsla(hue($color), saturation($color), lightness($color), $alpha);
+}

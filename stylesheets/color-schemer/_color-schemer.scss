@@ -1,0 +1,233 @@
+// brightness and hue offsets are based on the lightness and saturation of the color
+// unless defined otherwise.
+@function cs-brightness-offset($cs-brightness-offset) {
+  @if $cs-brightness-offset == false {
+    // find the difference between lightness
+    @return lightness($cs-primary) - lightness(invert($cs-primary));
+  }
+  @else {
+    @return $cs-brightness-offset;
+  }
+}
+
+@function cs-hue-offset($cs-hue-offset) {
+  @if $cs-hue-offset == false {
+    // find the difference between lightness
+    @return lightness($cs-primary) - lightness(invert($cs-primary));
+  }
+  @else {
+    @return $cs-hue-offset;
+  }
+}
+
+
+@function cs-primary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+  @return $cs-primary;
+}
+
+@function cs-secondary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+  $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
+  $cs-hue-offset: cs-hue-offset($cs-hue-offset);
+
+  // mono
+  @if $cs-scheme == mono {
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
+    }
+    @else {
+      @return darken($cs-primary, abs($cs-brightness-offset));
+    }
+  }
+
+  // complement
+  @if $cs-scheme == complement {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // triad
+  @if $cs-scheme == triad {
+    @if $cs-color-model == ryb {
+      @return ryb-adjust-hue($cs-primary, $cs-hue-offset)
+    }
+    @else {
+      @return adjust-hue($cs-primary, $cs-hue-offset)
+    }
+  }
+
+  // tetrad
+  @if $cs-scheme == tetrad {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // analogic
+  @if $cs-scheme == analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // accented-analogic
+  @if $cs-scheme == accented-analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // @if $color-scheme == triad
+  //   @if $color-model == ryb
+  //     @return adjust-hue(ryb-complement($base-color), $hue-offset)
+  //   @return adjust-hue(complement($base-color), $hue-offset)
+  // @if $color-scheme == tetrad
+  //   @return adjust-hue($base-color, $hue-offset)
+  // @if $color-scheme == analogic
+  //   @return adjust-hue($base-color, $hue-offset)
+  // @if $color-scheme == accented-analogic
+  //   @return adjust-hue($base-color, $hue-offset)
+  // @return cs-equalization($cs-primary, $cs-equalize);
+}
+
+@function cs-tertiary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+  $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
+  $cs-hue-offset: cs-hue-offset($cs-hue-offset);
+
+  // mono
+  @if $cs-scheme == mono {
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
+    }
+    @else {
+      @return darken($cs-primary, abs($cs-brightness-offset));
+    }
+  }
+
+  // complement
+  @if $cs-scheme == complement {
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
+    }
+    @else {
+      @return darken($cs-primary, abs($cs-brightness-offset));
+    }
+  }
+
+  // triad
+  @if $cs-scheme == triad {
+    @if $cs-color-model == ryb {
+      @return ryb-adjust-hue($cs-primary, $cs-hue-offset * -1)
+    }
+    @else {
+      @return adjust-hue($cs-primary, $cs-hue-offset * -1)
+    }
+  }
+
+  // tetrad
+  @if $cs-scheme == tetrad {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // analogic
+  @if $cs-scheme == analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // accented-analogic
+  @if $cs-scheme == accented-analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+}
+
+@function cs-quadrary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+  $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
+  $cs-hue-offset: cs-hue-offset($cs-hue-offset);
+
+  // mono
+  @if $cs-scheme == mono {
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
+    }
+    @else {
+      @return darken($cs-primary, abs($cs-brightness-offset));
+    }
+  }
+
+  // complement
+  @if $cs-scheme == complement {
+    @if $cs-color-model == ryb {
+      @return equalize(ryb-complement($cs-primary))
+    }
+    @else {
+      @return invert($cs-primary)
+    }
+  }
+
+  // triad
+  @if $cs-scheme == triad {
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
+    }
+    @else {
+      @return darken($cs-primary, abs($cs-brightness-offset));
+    }
+  }
+
+  // tetrad
+  @if $cs-scheme == tetrad {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // analogic
+  @if $cs-scheme == analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+
+  // accented-analogic
+  @if $cs-scheme == accented-analogic {
+    @if $cs-color-model == ryb {
+      @return ryb-complement($cs-primary)
+    }
+    @else {
+      @return complement($cs-primary)
+    }
+  }
+}

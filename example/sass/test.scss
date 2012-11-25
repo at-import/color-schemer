@@ -2,60 +2,37 @@
 @import "color-schemer";
 
 // Pick the base color for your scheme:
-$base-color: #f00;
+$cs-primary: #293;
 
 // Select your scheme from the list and place it here:
-$color-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
+$cs-scheme: triad; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
-// $hue-offset: 30;
+// $cs-hue-offset: 30;
 
 // How distant do you want tints and shades to be from their base:
-// $brightness-offset: 10;
+// $cs-brightness-offset: 10;
 
-// $color-model: ryb; // rgb, ryb
-
-// Set saturation to 100% and lightness to 50% on all colors
-//$equalize: true;
-
-// $primary: color-schemer(primary);
-// $secondary: color-schemer(secondary);
-// $tertiary: color-schemer(tertiary);
-// $quadrary: color-schemer(quadrary);
-
-// OK, but need to adjust them? Just redefine your color scheme here. If you wish to define all of these the color-schemer file can be imported at the top of this file.
-//$primary: equalize(color-schemer(primary));
-//$secondary: tint(color-schemer(secondary), 30%);
-//$tertiary: shade(color-schemer(tertiary), 15%);
-//$quadrary: adjust-color(color-schemer(quadrary), $saturation: 10%);
+// $cs-color-model: ryb; // rgb, ryb
 
 // Just some basic page styles
-body, html, ul { padding: 0; margin: 0; width: 100%; height: 100%; background: $base-color;}
+body, html, ul { padding: 0; margin: 0; width: 100%; height: 100%; background: $cs-primary;}
 ul { display: table; }
 li { @include transition(all .25s); display: none; width: 1px; }
 $counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-cell; background-color: $color; } $counter: $counter + 1; }
 
 
 @include stop(
-  equalize(ryb-complement(red))
+  cs-primary()
 );
 @include stop(
-  equalize(ryb-complement(orange))
+  cs-secondary()
 );
 @include stop(
-  equalize(ryb-complement(yellow))
+  cs-tertiary()
 );
 @include stop(
-  equalize(ryb-complement(green))
-);
-@include stop(
-  equalize(ryb-complement(blue))
-);
-@include stop(
-  equalize(ryb-complement(indigo))
-);
-@include stop(
-  equalize(ryb-complement(violet))
+  cs-quadrary()
 );
 
 

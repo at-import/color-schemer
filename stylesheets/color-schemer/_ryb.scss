@@ -1,5 +1,5 @@
 // RYB color interpolation
-@function ryb($hue) {
+@function find-ryb($hue) {
 
   // remove units on $hue
   @if unit($hue) == deg {
@@ -27,7 +27,7 @@
 // Find the RYB hue instead of RGB hue of a color.
 // slow dumb loop at the moment.
 @function ryb-hue($color) {
-  @return ryb(hue($color));
+  @return find-ryb(hue($color));
 }
 
 // Changes the hue of a color.
@@ -50,7 +50,7 @@
   }
 
   // return the correct hue from the list.
-  @return set-hue($color, ryb(round($hue-adjust)));
+  @return set-hue($color, find-ryb(round($hue-adjust)));
 }
 
 // Returns the complement of a color.
