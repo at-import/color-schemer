@@ -60,13 +60,12 @@ $counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-ce
 
 
 // writes a whole spectrum.
-
-@for $i from 1 to 360 {
-  li:nth-child(#{$i}) {
-    display: block;
-    height: 100%;
-    width: (100% / 360);
-    float: left;
-    background: ryb-adjust-hue(#f00, $i);
-  }
-}
+// @for $i from 1 to 360 {
+//   li:nth-child(#{$i}) {
+//     display: block;
+//     height: 100%;
+//     width: (100% / 360);
+//     float: left;
+//     background: ryb-adjust-hue(#f00, $i);
+//   }
+// }
