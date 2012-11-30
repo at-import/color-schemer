@@ -27,7 +27,7 @@
 // Find the RYB hue instead of RGB hue of a color.
 // slow dumb loop at the moment.
 @function ryb-hue($color) {
-  @return find-ryb(hue($color));
+  @return find-ryb(hue($color)) - hue($color) * 2;
 }
 
 // Changes the hue of a color.
