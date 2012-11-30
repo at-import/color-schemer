@@ -42,10 +42,10 @@
   // triad
   @if $cs-scheme == triad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      @return ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset);
+      @return adjust-hue(complement($cs-primary), $cs-hue-offset);
     }
   }
 
@@ -60,22 +60,12 @@
   }
 
   // analogic
-  @if $cs-scheme == analogic {
+  @if $cs-scheme == analogic or $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
     }
     @else {
-      @return complement($cs-primary);
-    }
-  }
-
-  // accented-analogic
-  @if $cs-scheme == accented-analogic {
-    @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
-    }
-    @else {
-      @return complement($cs-primary);
+      @return adjust-hue($cs-primary, $cs-hue-offset);
     }
   }
 }
@@ -87,10 +77,10 @@
   // mono
   @if $cs-scheme == mono {
     @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
+      @return lighten($cs-primary, abs($cs-brightness-offset) / 1.6666);
     }
     @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
+      @return darken($cs-primary, abs($cs-brightness-offset) / 1.6666);
     }
   }
 
@@ -107,10 +97,10 @@
   // triad
   @if $cs-scheme == triad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset * -1);
+      @return ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset * -1);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset * -1);
+      @return adjust-hue(complement($cs-primary), $cs-hue-offset * -1);
     }
   }
 
@@ -125,12 +115,12 @@
   }
 
   // analogic
-  @if $cs-scheme == analogic {
+  @if $cs-scheme == analogic or $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      @return ryb-adjust-hue($cs-primary, $cs-hue-offset * -1);
     }
     @else {
-      @return complement($cs-primary);
+      @return adjust-hue($cs-primary, $cs-hue-offset * -1);
     }
   }
 
@@ -152,10 +142,10 @@
   // mono
   @if $cs-scheme == mono {
     @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
+      @return lighten($cs-primary, abs($cs-brightness-offset) / 1.3333);
     }
     @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
+      @return darken($cs-primary, abs($cs-brightness-offset) / 1.3333);
     }
   }
 
@@ -191,11 +181,11 @@
 
   // analogic
   @if $cs-scheme == analogic {
-    @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+    @if $cs-brightness-offset < 0 {
+      @return lighten($cs-primary, abs($cs-brightness-offset));
     }
     @else {
-      @return complement($cs-primary);
+      @return darken($cs-primary, abs($cs-brightness-offset));
     }
   }
 
