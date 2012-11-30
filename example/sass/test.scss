@@ -2,10 +2,10 @@
 @import "color-schemer";
 
 // Pick the base color for your scheme:
-$cs-primary: #293;
+$cs-primary: #49f;
 
 // Select your scheme from the list and place it here:
-$cs-scheme: triad; // mono, complement, triad, tetrad, analogic, accented-analogic
+$cs-scheme: analogic; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
 // $cs-hue-offset: 30;
