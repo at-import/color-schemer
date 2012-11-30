@@ -1,3 +1,20 @@
+@function cs-interpolate($value, $units: 360, $stops: #FF0000 #FF4900 #FF7400 #FF9200 #FFAA00 #FFBF00 #FFD300 #FFE800 #FFFF00 #CCF600 #9FEE00 #67E300 #00CC00 #00AF64 #009999 #0B61A4 #1240AB #1B1BB3 #3914AF #530FAD #7109AA #A600A6 #CD0074 #E40045) {
+  $cs-color-deg: $units / length($stops);
+  $cs-deg-count: $cs-color-deg;
+  $cs-stop-count: 1;
+  $stops: append($stops, nth($stops, 1));
+  @for $i from 0 through length($stops) {
+    @if $value < $cs-deg-count {
+      @return mix(nth($stops, $cs-stop-count + 1), nth($stops, $cs-stop-count), abs(percentage(($cs-deg-count - $value) / $cs-color-deg) - 100 ));
+    }
+    @else {
+      $cs-deg-count: $cs-deg-count + $cs-color-deg;
+      $cs-stop-count: $cs-stop-count + 1
+    }
+  }
+  @return $value;
+}
+
 // RYB color interpolation
 @function find-ryb($hue) {
 
@@ -5,34 +22,21 @@
   @if unit($hue) == deg {
     $hue: $hue / 1deg;
   }
-
-  // interpolate red and yellow.
-  @if $hue <= (360/3) {
-    @return hue(mix(#ff0, #f00, percentage($hue / (360/3) )));
-  }
-  // interpolate yellow and green.
-  @if $hue <= 360 / 2 and  $hue > (360/3) and $hue <= (360 / 3 * 2) {
-    @return hue(mix(#0f0, #ff0, percentage(($hue - (360 / 6 * 2)) / (360 / 6))));
-  }
-  // interpolate green and blue.
-  @if $hue > 360 / 2 and  $hue < (360 / 3 * 2) {
-    @return hue(mix(#00f, #0f0, percentage(($hue - (360 / 6 * 3)) / (360 / 6)) ));
-  }
-  // Blue to red does not need conversion.
-  @if $hue >= (360 / 3 * 2) {
-    @return $hue * 1deg;
-  }
+  @return hue(cs-interpolate($hue));
 }
 
 // Find the RYB hue instead of RGB hue of a color.
 // slow dumb loop at the moment.
 @function ryb-hue($color) {
-  @return find-ryb(hue($color)) - hue($color) * 2;
+  $return: (hue($color) - find-ryb(hue($color))) + find-ryb(hue($color));
+  @if $return == 360deg {
+    $return: 0deg;
+  }
+  @return $return;
 }
 
 // Changes the hue of a color.
 @function ryb-adjust-hue($color, $degrees) {
-
   // Convert precentag to degrees.
   @if unit($degrees) == "%" {
     $degrees: 360 * ($degrees / 100%);
@@ -49,8 +53,28 @@
     $hue-adjust: $hue-adjust + 360;
   }
 
-  // return the correct hue from the list.
-  @return set-hue($color, find-ryb(round($hue-adjust)));
+  $hue-adjust: $hue-adjust / 1deg;
+
+  $saturation: saturation(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - saturation($color);
+  $lightness: lightness(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - lightness($color);
+
+  // Set hue of new color
+  $new-color: cs-interpolate($hue-adjust);
+
+  // Tint or shade according to lightness
+  @if $lightness > 0 {
+    $new-color: darken($new-color, $lightness);
+  }
+  @if $lightness < 0 {
+    $new-color: lighten($new-color, abs($lightness));
+  }
+
+  // Adjust saturation
+  @if $saturation < 100% {
+    $new-color: desaturate($new-color, $saturation);
+  }
+
+  @return $new-color;
 }
 
 // Returns the complement of a color.

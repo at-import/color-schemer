@@ -2,10 +2,10 @@
 @import "color-schemer";
 
 // Pick the base color for your scheme:
-$cs-primary: #CD0074;
+$cs-primary: #0ff;
 
 // Select your scheme from the list and place it here:
-$cs-scheme: triad; // mono, complement, triad, tetrad, analogic, accented-analogic
+$cs-scheme: complement; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
 // $cs-hue-offset: 30;
@@ -43,6 +43,6 @@ $counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-ce
 //     height: 100%;
 //     width: (100% / 360);
 //     float: left;
-//     background: ryb-adjust-hue(#f00, $i);
+//     background: cs-interpolate($i);
 //   }
 // }
