@@ -121,6 +121,10 @@
   @return ryba($red, $yellow, $blue, 1);
 }
 
+@function set-ryb-hue($color, $hue) {
+  @return hsla(hue(cs-interpolate($hue)), saturation($color), lightness($color), alpha($color));
+}
+
 // Returns the complement of a color.
 @function ryb-complement($color) {
   @return ryb-adjust-hue($color, 180deg);
