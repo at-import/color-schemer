@@ -98,6 +98,29 @@
   @return $new-color;
 }
 
+@function ryba($red, $yellow, $blue, $alpha) {
+  $hue: 0;
+  $saturation: 0;
+  $lightness: percentage(($red + $yellow + $blue) / (255 * 3));
+  @if $red == $yellow and $yellow == $blue {
+    @return hsla(0, 0, $lightness, $alpha);
+  }
+  @if $red >= $yellow and $red >= $blue {
+    $hue: 0;
+  }
+  @elseif $yellow >= $red and $yellow >= $blue {
+    $hue: 360 / 3;
+  }
+  @elseif $blue >= $red and $blue >= $yellow {
+    $hue: 360 / 3 * 2;
+  }
+  @return hsla(hue(cs-interpolate($hue)), 100%, 50%, 1);
+}
+
+@function ryb($red, $yellow, $blue) {
+  @return ryba($red, $yellow, $blue, 1);
+}
+
 // Returns the complement of a color.
 @function ryb-complement($color) {
   @return ryb-adjust-hue($color, 180deg);
