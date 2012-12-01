@@ -85,7 +85,7 @@
 
   // Tint or shade according to lightness
   @if $lightness > 0 {
-    $new-color: shade($new-color, $lightness);
+    $new-color: shade($new-color, $lightness * 2);
   }
   @if $lightness < 0 {
     $new-color: tint($new-color, abs($lightness));

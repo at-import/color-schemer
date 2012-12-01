@@ -2,7 +2,7 @@
 @import "color-schemer";
 
 // Pick the base color for your scheme:
-$cs-primary: #f00;
+$cs-primary: purple;
 
 // Select your scheme from the list and place it here:
 $cs-scheme: complement; // mono, complement, triad, tetrad, analogic, accented-analogic
@@ -37,12 +37,12 @@ $counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-ce
 
 
 // writes a whole spectrum.
-// @for $i from 1 to 360 {
-//   li:nth-child(#{$i}) {
-//     display: block;
-//     height: 100%;
-//     width: (100% / 360);
-//     float: left;
-//     background: ryb-complement(cs-interpolate($i));
-//   }
-// }
+@for $i from 1 to 360 {
+  li:nth-child(#{$i}) {
+    display: block;
+    height: 100%;
+    width: (100% / 360);
+    float: left;
+    background: cs-interpolate($i);
+  }
+}
