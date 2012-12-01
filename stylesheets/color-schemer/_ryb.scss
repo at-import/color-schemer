@@ -1,4 +1,14 @@
 @function cs-interpolate($value, $units: 360, $stops: #FF0000 #FF4900 #FF7400 #FF9200 #FFAA00 #FFBF00 #FFD300 #FFE800 #FFFF00 #CCF600 #9FEE00 #67E300 #00CC00 #00AF64 #009999 #0B61A4 #1240AB #1B1BB3 #3914AF #530FAD #7109AA #A600A6 #CD0074 #E40045) {
+  
+  // Loop numbers out of scale back into the scale.
+  @while $value >= 360 {
+    $value: $value - 360;
+  }
+  @while $value < 0 {
+    $value: $value + 360;
+  }
+  // @debug $value;
+
   $cs-color-deg: $units / length($stops);
   $cs-deg-count: $cs-color-deg;
   $cs-stop-count: 1;
@@ -71,7 +81,7 @@
 
   // Adjust saturation
   @if $saturation < 100% {
-    $new-color: desaturate($new-color, $saturation);
+    $new-color: desaturate($new-color, abs($saturation));
   }
 
   @return $new-color;
