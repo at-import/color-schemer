@@ -18,7 +18,8 @@
 }
 
 @function set-ryb-hue($color, $hue) {
-  @return hsla(ryb-hue($hue), saturation($color), lightness($color), alpha($color));
+
+  @return hsla(hue(cs-interpolate($hue)), saturation($color), lightness($color), alpha($color));
 }
 
 @function set-saturation($color, $saturation) {
