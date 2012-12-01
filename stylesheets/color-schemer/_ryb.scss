@@ -7,22 +7,30 @@
   @while $value < 0 {
     $value: $value + 360;
   }
-  // @debug $value;
 
+  // Find out how many units in each stop
   $cs-color-deg: $units / length($stops);
+
+  // Count through stops
   $cs-deg-count: $cs-color-deg;
   $cs-stop-count: 1;
+
+  // Add the first stop to the end so it will be
+  // interpolated with the last stop.
   $stops: append($stops, nth($stops, 1));
+
+  // Start interpolating
   @for $i from 0 through length($stops) {
     @if $value < $cs-deg-count {
       @return mix(nth($stops, $cs-stop-count + 1), nth($stops, $cs-stop-count), abs(percentage(($cs-deg-count - $value) / $cs-color-deg) - 100 ));
     }
+
+    // If the value is not in this stop, loop up to another stop.
     @else {
       $cs-deg-count: $cs-deg-count + $cs-color-deg;
       $cs-stop-count: $cs-stop-count + 1
     }
   }
-  @return $value;
 }
 
 // RYB color interpolation
@@ -32,38 +40,42 @@
   @if unit($hue) == deg {
     $hue: $hue / 1deg;
   }
+
+  // return an interpolated hue
   @return hue(cs-interpolate($hue));
 }
 
 // Find the RYB hue instead of RGB hue of a color.
 // slow dumb loop at the moment.
 @function ryb-hue($color) {
-  $return: (hue($color) - find-ryb(hue($color))) + find-ryb(hue($color));
-  @if $return == 360deg {
-    $return: 0deg;
+
+  // find offset
+  $hue: find-ryb(hue($color)) - hue($color);
+
+  // apply the offset difference
+  $hue: hue($color) - $hue;
+
+  // Make within the range of 360 if not already.
+  @while $hue >= 360deg {
+    $hue: $hue - 360;
   }
-  @return $return;
+  @while $hue < 0deg {
+    $hue: $hue + 360;
+  }
+
+  @return $hue;
 }
 
 // Changes the hue of a color.
 @function ryb-adjust-hue($color, $degrees) {
+
   // Convert precentag to degrees.
   @if unit($degrees) == "%" {
     $degrees: 360 * ($degrees / 100%);
   }
 
   // Start at the current hue and loop in the adjustment.
-  $hue-adjust: ryb-hue($color) + $degrees;
-
-  // Make on a scale of 1-360deg
-  @while $hue-adjust > 360 or $hue-adjust > 360deg {
-    $hue-adjust: $hue-adjust - 360;
-  }
-  @while $hue-adjust < 0 or $hue-adjust < 0deg {
-    $hue-adjust: $hue-adjust + 360;
-  }
-
-  $hue-adjust: $hue-adjust / 1deg;
+  $hue-adjust: (ryb-hue($color) + $degrees) / 1deg;
 
   $saturation: saturation(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - saturation($color);
   $lightness: lightness(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - lightness($color);
@@ -73,17 +85,16 @@
 
   // Tint or shade according to lightness
   @if $lightness > 0 {
-    $new-color: darken($new-color, $lightness);
+    $new-color: shade($new-color, $lightness);
   }
   @if $lightness < 0 {
-    $new-color: lighten($new-color, abs($lightness));
+    $new-color: tint($new-color, abs($lightness));
   }
 
   // Adjust saturation
   @if $saturation < 100% {
     $new-color: desaturate($new-color, abs($saturation));
   }
-
   @return $new-color;
 }
 
