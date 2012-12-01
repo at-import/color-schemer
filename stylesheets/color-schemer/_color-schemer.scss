@@ -52,10 +52,10 @@
   // tetrad
   @if $cs-scheme == tetrad {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
     }
     @else {
-      @return complement($cs-primary);
+      @return adjust-hue($cs-primary, $cs-hue-offset);
     }
   }
 
@@ -76,22 +76,12 @@
 
   // mono
   @if $cs-scheme == mono {
-    @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset) / 1.6666);
-    }
-    @else {
-      @return darken($cs-primary, abs($cs-brightness-offset) / 1.6666);
-    }
+    @return mix(cs-primary(), cs-secondary());
   }
 
   // complement
   @if $cs-scheme == complement {
-    @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
-    }
-    @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
-    }
+    @return equalize($cs-primary);
   }
 
   // triad
@@ -107,10 +97,10 @@
   // tetrad
   @if $cs-scheme == tetrad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      @return ryb-complement($cs-primary);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset);
+      @return complement($cs-primary);
     }
   }
 
@@ -141,32 +131,17 @@
 
   // mono
   @if $cs-scheme == mono {
-    @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset) / 1.3333);
-    }
-    @else {
-      @return darken($cs-primary, abs($cs-brightness-offset) / 1.3333);
-    }
+    @return equalize($cs-primary);
   }
 
   // complement
   @if $cs-scheme == complement {
-    @if $cs-color-model == ryb {
-      @return equalize(ryb-complement($cs-primary));
-    }
-    @else {
-      @return invert($cs-primary);
-    }
+    @return equalize(ryb-complement($cs-primary));
   }
 
   // triad
   @if $cs-scheme == triad {
-    @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
-    }
-    @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
-    }
+    @return equalize($cs-primary);
   }
 
   // tetrad
@@ -181,12 +156,7 @@
 
   // analogic
   @if $cs-scheme == analogic {
-    @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
-    }
-    @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
-    }
+    @return equalize($cs-primary);
   }
 
   // accented-analogic
