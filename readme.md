@@ -2,6 +2,8 @@
 
 #### Color schemes made easy with Sass
 
+Color schemer is a robust color toolset for Sass. It expands on the existing [Sass color functions](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html) and adds things like RYB manipulation, * set-hue, * set-lightness, tint, shade and more. It also leverages these tools adding a full-featured color scheming tool that allows you to set one primary color and create whole color schemes around it.
+
 ## Install
 
 `gem install color-schemer` in your terminal.
@@ -10,45 +12,51 @@
 
 `@import 'color-schemer'` to your stylesheet.
 
-### Cascade
+### Using Color Schemer
 
-Color schemer writes default $primary, $secondary ... variables for you and these will be different based on when you import the color schemer. You can just use the functions and define the variables yourself in witch case importing the file first will be fine. If you set up a configuration and then import the color schemer these variables will change based on your settings. You can override these settings after importing the color schemer file.
+## New color functions
 
-## Useage
+* `tint($color, $amount)` — Mixes the color with white. Most designers are much more comfortable with this than `lighten()`.
+* `tint($color, $amount)` — Same as above but adds black. Designers might prefer it over `darken()`.
+* `equalize($color)` — Returns a fully saturated color.
+* `set-red($color, $red)` — Sets the amount of red in a color.
+* `set-green($color, $green)` — Sets the amount of green in a color.
+* `set-blue($color, $blue)` — Sets the amount of blue in a color.
+* `set-hue($color, $hue)` — Sets the hue of a color.
+* `set-saturation($color, $saturation)` — Sets the saturation of a color.
+* `set-lightness($color, $lightness)` — Sets the lightness of a color.
+* `set-alpha($color, $alpha)` — Sets the alpha of a color.
 
-Color schemer extends the basic Sass color functions to provide additional support for color schemes and manipulation. The basic functions included are as follows:
+#### RYB color functions
 
-* `color-schemer($color-location [primary, secondary, tertiary, quadrary])` — Builds out color schemes.
-    * `$base-color, $color-scheme [mono, complement, triad, tetrad, analogic, accented-analogic], $hue-offset` — Additional options for the above function.
-* `equalize($color)` — Removes any tints and shades from a color.
-* `boutet-complement($color)` — A complement adjusted to roughly match traditional color theory instead of RGB theory. So the complement of red will be green.
+Color schemer adds a number of functions to manipulate the red yellow and blue color wheel. Computer color is calculated in red green and blue which is more technically correct but artists and designers have been using RYB for ages to come up with better color relationships.
 
-Defining variables will change your color scheme and how it behaves:
+* `ryb-hue($color)` — Will find the hue of a color on the RYB color wheel.
+* `set-ryb-hue($color, $hue)` — Sets the hue of a color based on the RYB color wheel.
+* `ryb-adjust-hue($color, $degrees)` — Will adjust the hue of a color around the RYB color wheel.
+* `ryb-complement($color)` — Finds the RYB complement of a color.
+* `ryb-invert($color)` — Inverts a color around the RYB color wheel.
 
-* `$base-color: $color` — Select the color for the scheme to be based on.
-* `$color-location: [primary, secondary, tertiary, quadrary]` — Select the location of the color in the scheme you are calculating.
-* `$color-scheme: [mono, complement, triad, tetrad, analogic, accented-analogic]` — Choices of different color schemes.
-* `$hue-offset: 20` — How many degrees to offset hue shifts in triad, tetrad, analogic, and accented-analogic schemes.
-* `$brightness-offset: 10%` — Differences in lights and darks in the color scheme.
-* `$color-model: [rgb, ryb]` — Switch between RGB and the traditional RYB color model.
-* `$equalize: [true, false]` — Choose weather or not to equalize the base-color when generating a scheme.
+## Color scheming
 
-## Schemes
+#### functions
 
-* mono
-* complement
-* triad
-* tetrad
-* analogic
-* accented-analogic
+Drop these functions in wherever you want to use a color from the scheme. You can manipulate them further to make them work with your design. These should be considered a good starting point as you might want to tweak a little further.
 
-## Color Functions
+* `cs-primary()` — primary color.
+* `cs-secondary()` — secondary color.
+* `cs-tertiary()` — tertiary color.
+* `cs-quadrary()` — quadrary color.
 
-Color schemer also includes two new color functions which serve as alternates to the `lighten()` and `darken()` functions in Sass. `tint()` and `shade()` allow you to mix in amounts of white or black to any color. 
+#### Variables
 
-### Use
-  `tint($color, $percent)`  
-  `shade($color, $percent)`  
+You can change the result of the functions above by setting these global variables:
+
+* `$cs-primary` — set the primary color in a color scheme.
+* `$cs-scheme` — mono, complement, triad, tetrad, analogic, accented-analogic
+* `$cs-hue-offset` — Amount of hue adjustment in schemes.
+* `$cs-brightness-offset` — Amount of brightness adjustment in schemes.
+* `$cs-color-model` — rgb, ryb
 
 ## Inspiration
 
@@ -63,4 +71,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

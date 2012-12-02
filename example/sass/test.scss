@@ -1,0 +1,48 @@
+@import "compass";
+@import "color-schemer";
+
+// Pick the base color for your scheme:
+$cs-primary: #198f34;
+
+// Select your scheme from the list and place it here:
+$cs-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
+
+// How distant do you want the hue offset to be:
+// $cs-hue-offset: 60;
+
+// How distant do you want tints and shades to be from their base:
+// $cs-brightness-offset: 10;
+
+$cs-color-model: ryb; // rgb, ryb
+
+// Just some basic page styles
+body, html, ul { padding: 0; margin: 0; width: 100%; height: 100%; background: $cs-primary;}
+ul { display: table; }
+li { @include transition(all .25s); display: none; width: 1px; }
+$counter: 1; @mixin stop($color) { li:nth-child(#{$counter}) { display: table-cell; background-color: $color; } $counter: $counter + 1; }
+
+
+@include stop(
+  cs-primary()
+);
+@include stop(
+  cs-secondary()
+);
+@include stop(
+  cs-tertiary()
+);
+@include stop(
+  cs-quadrary()
+);
+
+
+// writes a whole spectrum.
+// @for $i from 1 to 360 {
+//   li:nth-child(#{$i}) {
+//     display: block;
+//     height: 100%;
+//     width: (100% / 360);
+//     float: left;
+//     background: cs-interpolate($i);
+//   }
+// }
