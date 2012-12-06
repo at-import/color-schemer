@@ -58,6 +58,17 @@ You can change the result of the functions above by setting these global variabl
 * `$cs-brightness-offset` — Amount of brightness adjustment in schemes.
 * `$cs-color-model` — rgb, ryb
 
+#### Out of the box
+
+While you **can** use these functions out of the box you might want to fine-tune them a bit more. I suggest you create variables with them just in case you want to make adjustments/move things around instead of relying on these as-is.
+
+```scss
+$primary: cs-primary();
+$secondary: darken(cs-secondary(), 10%); // too light, darkening this up a bit.
+$tertiary: cs-tertiary();
+$quadrary: cs-quadrary();
+```
+
 ## Inspiration
 
 * http://colorschemedesigner.com/
