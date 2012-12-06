@@ -61,7 +61,6 @@ You can change the result of the functions above by setting these global variabl
 ## Inspiration
 
 * http://colorschemedesigner.com/
-* https://github.com/canarymason/The-Coding-Designers-Survival-Kit/blob/master/sass/partials/lib/variables/_color_schemes.sass
 
 ## License
 
