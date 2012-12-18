@@ -17,7 +17,7 @@ Color schemer is a robust color toolset for Sass. It expands on the existing [Sa
 ## New color functions
 
 * `tint($color, $amount)` — Mixes the color with white. Most designers are much more comfortable with this than `lighten()`.
-* `tint($color, $amount)` — Same as above but adds black. Designers might prefer it over `darken()`.
+* `shade($color, $amount)` — Same as above but adds black. Designers might prefer it over `darken()`.
 * `equalize($color)` — Returns a fully saturated color.
 * `set-red($color, $red)` — Sets the amount of red in a color.
 * `set-green($color, $green)` — Sets the amount of green in a color.
