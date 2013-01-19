@@ -37,6 +37,10 @@ Color schemer adds a number of functions to manipulate the red yellow and blue c
 * `ryb-complement($color)` — Finds the RYB complement of a color.
 * `ryb-invert($color)` — Inverts a color around the RYB color wheel.
 
+#### CMYK color function
+
+* `cmyk($cyan, $magenta, $yellow, $black)` — Define colors using CMYK values.
+
 ## Color scheming
 
 #### functions
