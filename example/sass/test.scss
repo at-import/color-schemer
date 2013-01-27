@@ -11,7 +11,7 @@
 $cs-primary: red;
 
 // Select your scheme from the list and place it here:
-$cs-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
+$cs-scheme: accented-analogic; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
 // $cs-hue-offset: 60;
@@ -25,28 +25,35 @@ $cs-color-model: ryb; // rgb, ryb
 
 ////////////////////////////////////////////
 
+@function cs-mix($color1, $color2, $ammount: 50%) {
+
+  $new-color: $color1;
+  
+  $hue-difference: hue($color1) - hue($color2);
+  @if $cs-color-model == ryb {
+    $hue-difference: ryb-hue($color1) - ryb-hue($color2);
+  }
+  $hue-offset: $hue-difference * ($ammount / 100%);
+
+  @if $cs-color-model == ryb {
+    $new-color: ryb-adjust-hue($new-color, $hue-offset);
+  }
+  @else {
+    $new-color: adjust-hue($new-color, $hue-offset);
+  }
+
+  $lightness-difference: lightness($color1) - lightness($color2);
+  $lightness-offset: $lightness-difference * ($ammount / 100%);
+  
+  $new-color: set-lightness($new-color, lightness($color1) - $lightness-offset);
+
+  @return $new-color;
+}
 
 $colors:
-  cmyk(0%, 0%, 0%, 0%)
-  cmyk(25%, 0%, 0%, 0%)
-  cmyk(100%, 0%, 0%, 0%)
-  cmyk(100%, 25%, 0%, 0%)
-  cmyk(100%, 50%, 0%, 0%)
-  cmyk(100%, 75%, 0%, 0%)
-  cmyk(100%, 100%, 0%, 0%)
-  cmyk(75%, 100%, 0%, 0%)
-  cmyk(50%, 100%, 0%, 0%)
-  cmyk(25%, 100%, 0%, 0%)
-  cmyk(0%, 100%, 0%, 0%)
-  cmyk(0%, 100%, 25%, 0%)
-  cmyk(0%, 100%, 50%, 0%)
-  cmyk(0%, 100%, 75%, 0%)
-  cmyk(0%, 100%, 100%, 0%)
-  cmyk(0%, 75%, 100%, 0%)
-  cmyk(0%, 50%, 100%, 0%)
-  cmyk(0%, 25%, 100%, 0%)
-  cmyk(0%, 0%, 100%, 0%)
-  cmyk(0%, 0%, 100%, 0%)
+  cyan
+  cs-mix(cyan, green, 0%)
+  green
 ;
 
 
