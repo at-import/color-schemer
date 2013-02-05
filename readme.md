@@ -52,27 +52,6 @@ Drop these functions in wherever you want to use a color from the scheme. You ca
 * `cs-tertiary()` — tertiary color.
 * `cs-quadrary()` — quadrary color.
 
-#### Variables
-
-You can change the result of the functions above by setting these global variables:
-
-* `$cs-primary` — set the primary color in a color scheme.
-* `$cs-scheme` — mono, complement, triad, tetrad, analogic, accented-analogic
-* `$cs-hue-offset` — Amount of hue adjustment in schemes.
-* `$cs-brightness-offset` — Amount of brightness adjustment in schemes.
-* `$cs-color-model` — rgb, ryb
-
-#### Out of the box
-
-While you **can** use these functions out of the box you might want to fine-tune them a bit more. I suggest you create variables with them just in case you want to make adjustments/move things around instead of relying on these as-is.
-
-```scss
-$primary: cs-primary();
-$secondary: darken(cs-secondary(), 10%); // too light, darkening this up a bit.
-$tertiary: cs-tertiary();
-$quadrary: cs-quadrary();
-```
-
 ## Inspiration
 
 * http://colorschemedesigner.com/
