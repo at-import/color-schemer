@@ -8,18 +8,27 @@
 
 
 // Pick the base color for your scheme:
-$cs-primary: red;
+$cs-primary: #198f91;
 
 // Select your scheme from the list and place it here:
-$cs-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analogic
+$cs-scheme: analogic; // mono, complement, triad, tetrad, analogic, accented-analogic
 
 // How distant do you want the hue offset to be:
-// $cs-hue-offset: 60;
+$cs-hue-offset: 40;
 
 // How distant do you want tints and shades to be from their base:
 $cs-brightness-offset: 10;
 
-$cs-color-model: rgb; // rgb, ryb
+$cs-color-model: ryb; // rgb, ryb
+
+////////////////////////////////////////////
+
+$primary   : cs-primary();
+$secondary : cs-secondary();
+$tertiary  : cs-tertiary();
+$quadrary  : cs-quadrary();
+
+////////////////////////////////////////////
 
 @function cs-loop() {
   $list: ();
@@ -33,8 +42,10 @@ $cs-color-model: rgb; // rgb, ryb
 ////////////////////////////////////////////
 
 @include cs-test(
-  cs-loop()
-
+  $primary
+  $secondary
+  $tertiary
+  $quadrary
   , 100%, "html"
 );
 
