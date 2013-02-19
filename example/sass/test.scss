@@ -19,12 +19,12 @@ $cs-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analo
 // How distant do you want tints and shades to be from their base:
 $cs-brightness-offset: 10;
 
-$cs-color-model: rgb; // rgb, ryb
+$cs-color-model: ryb; // rgb, ryb
 
 @function cs-loop() {
   $list: ();
   @for $i from 0 through 100 {
-    $color: cs-mix(red, green, $i * 1%);
+    $color: cs-mix(#00f, #ff0, $i * 1%);
     $list: append($list, $color);
   }
   @return $list;
@@ -34,6 +34,8 @@ $cs-color-model: rgb; // rgb, ryb
 
 @include cs-test(
   cs-loop()
+  //cs-mix(red, purple)
+  //mix(red, purple)
 
   , 100%, "html"
 );
