@@ -19,53 +19,23 @@ $cs-scheme: tetrad; // mono, complement, triad, tetrad, analogic, accented-analo
 // How distant do you want tints and shades to be from their base:
 $cs-brightness-offset: 10;
 
-$cs-color-model: ryb; // rgb, ryb
+$cs-color-model: rgb; // rgb, ryb
 
-
-
-////////////////////////////////////////////
-
-
-$colors:
-  cmyk(0%, 0%, 0%, 0%)
-  cmyk(25%, 0%, 0%, 0%)
-  cmyk(100%, 0%, 0%, 0%)
-  cmyk(100%, 25%, 0%, 0%)
-  cmyk(100%, 50%, 0%, 0%)
-  cmyk(100%, 75%, 0%, 0%)
-  cmyk(100%, 100%, 0%, 0%)
-  cmyk(75%, 100%, 0%, 0%)
-  cmyk(50%, 100%, 0%, 0%)
-  cmyk(25%, 100%, 0%, 0%)
-  cmyk(0%, 100%, 0%, 0%)
-  cmyk(0%, 100%, 25%, 0%)
-  cmyk(0%, 100%, 50%, 0%)
-  cmyk(0%, 100%, 75%, 0%)
-  cmyk(0%, 100%, 100%, 0%)
-  cmyk(0%, 75%, 100%, 0%)
-  cmyk(0%, 50%, 100%, 0%)
-  cmyk(0%, 25%, 100%, 0%)
-  cmyk(0%, 0%, 100%, 0%)
-  cmyk(0%, 0%, 100%, 0%)
-;
-
-
-////////////////////////////////////////////
-// From Jina Bolton and Eric Meyer -- http://codepen.io/jina/pen/iosjp
-@function stripes($position, $colors) {
-  $colors: if(type-of($colors) != 'list', compact($colors), $colors);
-  $gradient: ();
-  $width: 100% / length($colors);
-
-  @for $i from 1 through length($colors) {
-    $pop: nth($colors,$i);
-    $new: $pop ($width * ($i - 1)), $pop ($width * $i);
-    $gradient: join($gradient, $new, comma);
+@function cs-loop() {
+  $list: ();
+  @for $i from 0 through 100 {
+    $color: cs-mix(red, green, $i * 1%);
+    $list: append($list, $color);
   }
-
-  @return linear-gradient($position, $gradient);
+  @return $list;
 }
 
-html {
-  @include background(stripes(left, ($colors)));
-}
+////////////////////////////////////////////
+
+@include cs-test(
+  cs-loop()
+
+  , 100%, "html"
+);
+
+body { margin: 0; }

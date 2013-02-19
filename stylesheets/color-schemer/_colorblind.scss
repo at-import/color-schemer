@@ -1,0 +1,12 @@
+@function cs-cb($color, $mode: $cs-colorblind) {
+
+  @if $mode == green {
+    @return $color - #0a0;
+  }
+
+
+  // Return color if no color blind mode.
+  @else {
+    @return $color;
+  }
+}
