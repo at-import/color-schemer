@@ -8,12 +8,18 @@
     @if (hue($color1) - hue($color2)) * .5 < -90deg {
       $hue-offset      : (hue($color1) + 360deg - hue($color2)) * $decimal;
     }
+    @if (hue($color1) - hue($color2)) * .5 > 90deg {
+      $hue-offset      : (hue($color1) - 360deg - hue($color2)) * $decimal;
+    }
   }
 
   @if $model == ryb {
     $hue-offset        : (ryb-hue($color1) - ryb-hue($color2)) * $decimal;
     @if (ryb-hue($color1) - ryb-hue($color2)) * .5 < -90deg {
       $hue-offset      : (ryb-hue($color1) + 360deg - ryb-hue($color2)) * $decimal;
+    }
+    @if (ryb-hue($color1) - ryb-hue($color2)) * .5 > 90deg {
+      $hue-offset      : (ryb-hue($color1) - 360deg - ryb-hue($color2)) * $decimal;
     }
   }
 

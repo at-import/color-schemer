@@ -23,8 +23,8 @@ $cs-color-model: rgb; // rgb, ryb
 
 @function cs-loop() {
   $list: ();
-  @for $i from 0 through 360 {
-    $color: cs-interpolate($i);
+  @for $i from 0% through 100% {
+    $color: cs-mix(red, purple, $i);
     $list: append($list, $color);
   }
   @return $list;
