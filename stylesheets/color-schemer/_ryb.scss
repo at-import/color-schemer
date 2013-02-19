@@ -22,7 +22,7 @@
   // Start interpolating
   @for $i from 0 through length($stops) {
     @if $value < $cs-deg-count {
-      @return mix(nth($stops, $cs-stop-count + 1), nth($stops, $cs-stop-count), abs(percentage(($cs-deg-count - $value) / $cs-color-deg) - 100 ));
+      @return cs-mix(nth($stops, $cs-stop-count + 1), nth($stops, $cs-stop-count), abs(percentage(($cs-deg-count - $value) / $cs-color-deg) - 100 ), $model: rgb);
     }
 
     // If the value is not in this stop, loop up to another stop.

@@ -1,16 +1,16 @@
-@function cs-mix($color1, $color2, $percent: 50%) {
+@function cs-mix($color1, $color2, $percent: 50%, $model: $cs-color-model) {
 
   $decimal           : abs($percent - 100%) / 100%;
   $hue-offset        : ();
 
-  @if $cs-color-model == rgb {
+  @if $model == rgb {
     $hue-offset        : (hue($color1) - hue($color2)) * $decimal;
     @if (hue($color1) - hue($color2)) * .5 < -90deg {
       $hue-offset      : (hue($color1) + 360deg - hue($color2)) * $decimal;
     }
   }
 
-  @if $cs-color-model == ryb {
+  @if $model == ryb {
     $hue-offset        : (ryb-hue($color1) - ryb-hue($color2)) * $decimal;
     @if (ryb-hue($color1) - ryb-hue($color2)) * .5 < -90deg {
       $hue-offset      : (ryb-hue($color1) + 360deg - ryb-hue($color2)) * $decimal;
@@ -20,7 +20,7 @@
   $saturation-offset : (saturation($color1) - saturation($color2)) * $decimal;
   $lightness-offset  : (lightness($color1) - lightness($color2)) * $decimal;
 
-  @if $cs-color-model == ryb {
+  @if $model == ryb {
     $color1: ryb-adjust-hue($color1, $hue-offset * -1);
   }
   @else {
