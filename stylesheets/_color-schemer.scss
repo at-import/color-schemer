@@ -7,6 +7,7 @@ $cs-color-model       : rgb !default;    // rgb, ryb
 $cs-colorblind        : normal !default;
 
 // Partials
+@import "color-schemer/interpolation";
 @import "color-schemer/cmyk";
 @import "color-schemer/ryb";
 @import "color-schemer/colorblind";
