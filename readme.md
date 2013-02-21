@@ -62,6 +62,10 @@ You can change the result of the functions above by setting these global variabl
 * `$cs-brightness-offset` — Amount of brightness adjustment in schemes.
 * `$cs-color-model` — rgb, ryb
 
+#### Blend modes
+
+Color schemer includes [SCSS Blend Modes](https://github.com/heygrady/scss-blend-modes) which allows you to do photoshop style blending of colors.
+
 #### Out of the box
 
 While you **can** use these functions out of the box you might want to fine-tune them a bit more. I suggest you create variables with them just in case you want to make adjustments/move things around instead of relying on these as-is.
