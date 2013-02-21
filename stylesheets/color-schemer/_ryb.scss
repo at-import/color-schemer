@@ -44,24 +44,18 @@ $ryb-interpolation: #FF0000 #FF4900 #FF7400 #FF9200 #FFAA00 #FFBF00 #FFD300 #FFE
   // Start at the current hue and loop in the adjustment.
   $hue-adjust: (ryb-hue($color) + $degrees) / 1deg;
 
-  $saturation: saturation(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - saturation($color);
-  $lightness: lightness(cs-interpolate(abs(ryb-hue($color)) / 1deg)) - lightness($color);
+  $lightness: lightness($color);
+  $saturation: saturation($color);
 
   // Set hue of new color
   $new-color: cs-interpolate($hue-adjust);
 
-  // Tint or shade according to lightness
-  @if $lightness > 0 {
-    $new-color: shade($new-color, $lightness * 2);
-  }
-  @if $lightness < 0 {
-    $new-color: tint($new-color, abs($lightness));
-  }
+  // Adjust lightness
+  $new-color: set-lightness($new-color, $lightness);
 
   // Adjust saturation
-  @if $saturation < 100% {
-    $new-color: desaturate($new-color, abs($saturation));
-  }
+  $new-color: set-saturation($new-color, $saturation);
+
   @return $new-color;
 }
 
