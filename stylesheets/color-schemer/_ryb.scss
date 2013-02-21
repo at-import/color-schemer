@@ -4,9 +4,7 @@ $ryb-interpolation: #FF0000 #FF4900 #FF7400 #FF9200 #FFAA00 #FFBF00 #FFD300 #FFE
 @function find-ryb($hue) {
 
   // remove units on $hue
-  @if unit($hue) == deg {
-    $hue: $hue / 1deg;
-  }
+  @if unit($hue) == deg { $hue: $hue / 1deg; }
 
   // return an interpolated hue
   @return hue(cs-interpolate($hue));
@@ -48,12 +46,12 @@ $ryb-interpolation: #FF0000 #FF4900 #FF7400 #FF9200 #FFAA00 #FFBF00 #FFD300 #FFE
   $saturation: saturation($color);
 
   // Set hue of new color
-  $new-color: cs-interpolate($hue-adjust);
+  $new-color: set-hue(red, hue(cs-interpolate($hue-adjust)));
 
-  // Adjust lightness
+  // Add back lightness
   $new-color: set-lightness($new-color, $lightness);
 
-  // Adjust saturation
+  // Add back saturation
   $new-color: set-saturation($new-color, $saturation);
 
   @return $new-color;

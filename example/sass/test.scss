@@ -33,8 +33,8 @@ $quadrary  : cs-quadrary();
 
 @function cs-loop() {
   $list: ();
-  @for $i from 0deg through 360deg {
-    $color: ryb-adjust-hue(#218B8B, $i);
+  @for $i from 0% through 100% {
+    $color: ryb-adjust-hue(#71C026, $i);
     $list: append($list, $color);
   }
   @return $list;
@@ -43,7 +43,7 @@ $quadrary  : cs-quadrary();
 ////////////////////////////////////////////
 
 @include cs-test(
-  #218B8B
+  #71C026
 );
 
 @include cs-test(
