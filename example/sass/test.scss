@@ -20,6 +20,7 @@ $cs-hue-offset: 40;
 $cs-brightness-offset: 10;
 
 $cs-color-model: ryb; // rgb, ryb
+$cs-colorblind: tritanopia; // protanopia, deuteranopia, tritanopia, protanomaly, deuteranomaly, tritanomaly, monochromacy, amonochromacy
 
 ////////////////////////////////////////////
 
@@ -33,7 +34,7 @@ $quadrary  : cs-quadrary();
 @function cs-loop() {
   $list: ();
   @for $i from 0deg through 360deg {
-    $color: ryb-adjust-hue(#218B8B, $i);
+    $color: cs-cb(adjust-hue(red, $i));
     $list: append($list, $color);
   }
   @return $list;
