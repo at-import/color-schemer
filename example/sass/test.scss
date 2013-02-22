@@ -20,7 +20,7 @@ $cs-hue-offset: 40;
 $cs-brightness-offset: 10;
 
 $cs-color-model: ryb; // rgb, ryb
-$cs-colorblind: normal; // protanopia, deuteranopia, tritanopia, protanomaly, deuteranomaly, tritanomaly, monochromacy, amonochromacy
+$cs-colorblind: deuteranopia; // protanopia, deuteranopia, tritanopia, protanomaly, deuteranomaly, tritanomaly, monochromacy, amonochromacy
 
 ////////////////////////////////////////////
 
@@ -33,17 +33,26 @@ $quadrary  : cs-quadrary();
 
 @function cs-loop() {
   $list: ();
-  @for $i from 0% through 100% {
-    $color: ryb-adjust-hue(#71C026, $i);
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
+@function cs-loop2() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: adjust-hue(red, $i * 8);
     $list: append($list, $color);
   }
   @return $list;
 }
 
+
 ////////////////////////////////////////////
 
 @include cs-test(
-  #71C026
+  cs-loop2()
 );
 
 @include cs-test(

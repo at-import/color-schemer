@@ -1,45 +1,20 @@
 @function cs-colorblind($color, $mode: $cs-colorblind) {
 
-  $severity: 66%;
+  // Refrence: http://www.w3.org/TR/AERT#color-contrast
 
-  // Protanopia - no red
-  @if $mode == protanopia {
-    @return $color - #f00;
-  }
-
-  // Deuteranopia - no green
+  // Deuteranopia
   @if $mode == deuteranopia {
-    @return $color - #0f0;
+    @return $color;
   }
 
-  // Tritanopia - no blue
+  // Protanopia
+  @if $mode == protanopia {
+    @return $color;
+  }
+
+  // Tritanopia
   @if $mode == tritanopia {
-    @return $color - #00f;
-  }
-
-  // Protanomaly - low red
-  @if $mode == protanomaly {
-    @return $color - shade(#f00, 100% - $severity);
-  }
-
-  // Deuteranomaly - low green
-  @if $mode == deuteranomaly {
-    @return $color - shade(#0f0, 100% - $severity);
-  }
-
-  // Tritanomaly - low blue
-  @if $mode == tritanomaly {
-    @return $color - shade(#00f, 100% - $severity);
-  }
-
-  // Typical Monochromacy
-  @if $mode == monochromacy {
-    @return desaturate($color, 100%);
-  }
-
-  // Atypical Monochromacy
-  @if $mode == amonochromacy {
-    @return desaturate($color, $severity);
+    @return $color;
   }
 
 
