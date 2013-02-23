@@ -39,24 +39,12 @@ $quadrary  : cs-quadrary();
   }
   @return $list;
 }
-@function cs-loop2() {
-  $list: ();
-  @for $i from 0deg through 360deg / 8 {
-    $color: adjust-hue(red, $i * 8);
-    $list: append($list, $color);
-  }
-  @return $list;
-}
 
 
 ////////////////////////////////////////////
 
 @include cs-test(
-  cs-loop2()
-);
-
-@include cs-test(
-  cs-loop()
+  green
   , 100%, "html"
 );
 
