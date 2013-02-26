@@ -1,0 +1,12 @@
+@import "color-schemer";
+
+
+@if ryb-adjust-hue(green, 0) != green {
+  @debug "ryb-adjust-hue fail";
+  @debug "ryb-adjust-hue(green, 0) was #{ryb-adjust-hue(green, 0)}";
+}
+
+@if ryb-complement(green) != maroon {
+  @debug "ryb-complement fail";
+  @debug "ryb-complement(green) was #{ryb-complement(green)}";
+}

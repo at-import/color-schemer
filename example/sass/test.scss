@@ -2,10 +2,8 @@
 @import "color-schemer";
 
 
-
 ////////////////////////////////////////////
-
-
+// SCHEME
 
 // Pick the base color for your scheme:
 $cs-primary: #198f91;
@@ -22,14 +20,18 @@ $cs-brightness-offset: 10;
 $cs-color-model: ryb; // rgb, ryb
 $cs-colorblind: deuteranopia; // protanopia, deuteranopia, tritanopia, protanomaly, deuteranomaly, tritanomaly, monochromacy, amonochromacy
 
-////////////////////////////////////////////
-
 $primary   : cs-primary();
 $secondary : cs-secondary();
 $tertiary  : cs-tertiary();
 $quadrary  : cs-quadrary();
 
+@include cs-test(
+  red
+  , $element: ".scheme"
+);
+
 ////////////////////////////////////////////
+// RYB
 
 @function cs-loop() {
   $list: ();
@@ -40,12 +42,98 @@ $quadrary  : cs-quadrary();
   @return $list;
 }
 
+@include cs-test(
+  orange
+  , $element: ".ryb"
+);
+
 
 ////////////////////////////////////////////
+// RGB
+
+@function cs-loop() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
+
+@include cs-test(
+  yellow
+  , $element: ".rgb"
+);
+
+////////////////////////////////////////////
+// CMYK
+
+@function cs-loop() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
 
 @include cs-test(
   green
-  , 100%, "html"
+  , $element: ".cmyk"
 );
 
-body { margin: 0; }
+////////////////////////////////////////////
+// CS-MIX
+
+@function cs-loop() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
+
+@include cs-test(
+  blue
+  , $element: ".cs-mix"
+);
+
+////////////////////////////////////////////
+// MIX
+
+@function cs-loop() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
+
+@include cs-test(
+  blue
+  , $element: ".mix"
+);
+
+////////////////////////////////////////////
+
+html {
+  height: 100%;
+}
+body {
+  display: table;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+div {
+  display: table-row !important;
+  height: auto !important;
+}
+
+
+
+
+
+
