@@ -1,0 +1,13 @@
+{
+  "name": "color-schemer",
+  "version": "0.2.3",
+  "main": "stylesheets/_color-schemer.scss",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "scss-blend-modes": "git://github.com/heygrady/scss-blend-modes.git"
+  }
+}
