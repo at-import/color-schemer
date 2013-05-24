@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.5.2}
   s.summary = %q{Create color schemes with ease.}
   s.add_dependency(%q<compass>, ["~> 0.12"])
-  s.add_dependency(%q<blend-mode>, ["~> 0.0.1"])
+  s.add_dependency(%q<blend-modes>, ["~> 0.0.1"])
 end
