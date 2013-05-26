@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{color-schemer}
-  s.version = "0.2.3"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.5")
   s.authors = ["Scott Kellum", "Mason Wendell"]
@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.5.2}
   s.summary = %q{Create color schemes with ease.}
   s.add_dependency(%q<compass>, ["~> 0.12"])
-  s.add_dependency(%q<blend-mode>, ["~> 0.0.1"])
+  s.add_dependency(%q<compass-blend-modes>, ["~> 0.0.2"])
 end
