@@ -68,13 +68,21 @@ Color schemer includes [SCSS Blend Modes](https://github.com/heygrady/scss-blend
 
 #### Out of the box
 
-While you **can** use these functions out of the box you might want to fine-tune them a bit more. I suggest you create variables with them just in case you want to make adjustments/move things around instead of relying on these as-is.
+While you *can* use these functions out of the box you might want to fine-tune them a bit more. I suggest you create variables with them just in case you want to make adjustments/move things around instead of relying on these as-is.
 
 ```scss
 $primary: cs-primary();
 $secondary: darken(cs-secondary(), 10%); // too light, darkening this up a bit.
 $tertiary: cs-tertiary();
 $quadrary: cs-quadrary();
+```
+
+## Testing your color scheme
+
+Also included is a handy mixin to test out color schemes. Just include it with a list of your colors and it will add a bar of color above your page.
+
+```scss
+@include cs-test(red green blue);
 ```
 
 ## Inspiration
