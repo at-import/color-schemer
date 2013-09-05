@@ -19,6 +19,8 @@ $cs-colorblind        : normal !default;
 @import "color-schemer/color-adjustments";
 @import "color-schemer/color-schemer";
 
+@import "_comparison.scss";
+
 @import "color-schemer/mixins";
 
 // Tell other files that this is loaded.
