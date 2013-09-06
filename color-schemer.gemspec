@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{color-schemer}
-  s.version = "0.2.6"
+  s.version = "0.2.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.5")
   s.authors = ["Scott Kellum", "Mason Wendell"]
