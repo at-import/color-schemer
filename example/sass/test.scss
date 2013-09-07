@@ -23,7 +23,7 @@ $cs-colorblind: deuteranopia; // protanopia, deuteranopia, tritanopia, protanoma
 $primary   : cs-primary();
 $secondary : cs-secondary();
 $tertiary  : cs-tertiary();
-$quadrary  : cs-quadrary();
+$quadrary  : cs-quaternary();
 
 @include cs-test(
   red
