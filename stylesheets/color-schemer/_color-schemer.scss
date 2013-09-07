@@ -125,8 +125,16 @@
   }
 }
 
-// Quadrary color scheme
+// Deprecation warning for quadrary
 @function cs-quadrary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+
+  @warn "cs-quadrary has been deprecated as it is the incorrect adjective. Please use cs-quaternary instead. This function will be removed in an upcoming release of Color Schemer";
+
+  @return cs-quaternary($cs-primary, $cs-scheme, $cs-hue-offset, $cs-brightness-offset);
+}
+
+// Quaternary color scheme
+@function cs-quaternary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
   $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
 
   // mono
