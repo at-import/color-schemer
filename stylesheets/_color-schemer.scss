@@ -7,6 +7,9 @@ $cs-hue-offset        : 30 !default;
 $cs-brightness-offset : false !default;
 $cs-color-model       : rgb !default;    // rgb, ryb
 $cs-colorblind        : normal !default;
+$cs-harmonize-mode    : null !default;
+$cs-harmonize-color   : $cs-primary !default;
+$cs-harmonize-amount  : 10% !default;
 
 // Partials
 @import "color-schemer/interpolation";
@@ -17,6 +20,7 @@ $cs-colorblind        : normal !default;
 @import "color-schemer/mix";
 @import "color-schemer/tint-shade";
 @import "color-schemer/color-adjustments";
+@import "color-schemer/harmonize";
 @import "color-schemer/color-schemer";
 
 @import "color-schemer/comparison";

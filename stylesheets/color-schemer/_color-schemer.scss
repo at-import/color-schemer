@@ -10,162 +10,199 @@
   }
 }
 
+// Harmonized or Unaltered Color
+@function clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount) {
+  @if $cs-harmonize-mode != null {
+    @return cs-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
+  } @else {
+    @return $color;
+  }
+}
+
 // Primary color
-@function cs-primary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
-  @return $cs-primary;
+@function cs-primary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset, $cs-harmonize-mode:$cs-harmonize-mode, $cs-harmonize-color:$cs-harmonize-color, $cs-harmonize-amount:$cs-harmonize-amount) {
+  @return clean-or-harmonize($cs-primary, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
 }
 
 // Secondary color scheme
-@function cs-secondary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+@function cs-secondary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset, $cs-harmonize-mode:$cs-harmonize-mode, $cs-harmonize-color:$cs-harmonize-color, $cs-harmonize-amount:$cs-harmonize-amount) {
   $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
 
   // mono
   @if $cs-scheme == mono {
     @if $cs-brightness-offset < 0 {
-      @return lighten($cs-primary, abs($cs-brightness-offset));
+      $color: lighten($cs-primary, abs($cs-brightness-offset));
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return darken($cs-primary, abs($cs-brightness-offset));
+      $color: darken($cs-primary, abs($cs-brightness-offset));
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // complement
   @if $cs-scheme == complement {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      $color: ryb-complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return complement($cs-primary);
+      $color: complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // triad
   @if $cs-scheme == triad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset);
+      $color: ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue(complement($cs-primary), $cs-hue-offset);
+      $color: adjust-hue(complement($cs-primary), $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // tetrad
   @if $cs-scheme == tetrad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      $color: ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset);
+      $color: adjust-hue($cs-primary, $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // analogic
   @if $cs-scheme == analogic or $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      $color: ryb-adjust-hue($cs-primary, $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset);
+      $color: adjust-hue($cs-primary, $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 }
 
 // Tertiary color scheme
-@function cs-tertiary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+@function cs-tertiary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset, $cs-harmonize-mode:$cs-harmonize-mode, $cs-harmonize-color:$cs-harmonize-color, $cs-harmonize-amount:$cs-harmonize-amount) {
   $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
 
   // mono
   @if $cs-scheme == mono {
-    @return mix(cs-primary(), cs-secondary());
+    $color: mix(cs-primary(), cs-secondary());
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // complement
   @if $cs-scheme == complement {
-    @return equalize($cs-primary);
+    $color: equalize($cs-primary);
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // triad
   @if $cs-scheme == triad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset * -1);
+      $color: ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset * -1);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue(complement($cs-primary), $cs-hue-offset * -1);
+      $color: adjust-hue(complement($cs-primary), $cs-hue-offset * -1);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // tetrad
   @if $cs-scheme == tetrad {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      $color: ryb-complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return complement($cs-primary);
+      $color: complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // analogic
   @if $cs-scheme == analogic or $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue($cs-primary, $cs-hue-offset * -1);
+      $color: ryb-adjust-hue($cs-primary, $cs-hue-offset * -1);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue($cs-primary, $cs-hue-offset * -1);
+      $color: adjust-hue($cs-primary, $cs-hue-offset * -1);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // accented-analogic
   @if $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      $color: ryb-complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return complement($cs-primary);
+      $color: complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 }
 
 // Quadrary color scheme
-@function cs-quadrary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset) {
+@function cs-quadrary($cs-primary:$cs-primary, $cs-scheme:$cs-scheme, $cs-hue-offset:$cs-hue-offset, $cs-brightness-offset:$cs-brightness-offset, $cs-harmonize-mode:$cs-harmonize-mode, $cs-harmonize-color:$cs-harmonize-color, $cs-harmonize-amount:$cs-harmonize-amount) {
   $cs-brightness-offset: cs-brightness-offset($cs-brightness-offset);
 
   // mono
   @if $cs-scheme == mono {
-    @return equalize($cs-primary);
+    $color: equalize($cs-primary);
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // complement
   @if $cs-scheme == complement {
-    @return equalize(ryb-complement($cs-primary));
+    $color: equalize(ryb-complement($cs-primary));
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // triad
   @if $cs-scheme == triad {
-    @return equalize($cs-primary);
+    $color: equalize($cs-primary);
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // tetrad
   @if $cs-scheme == tetrad {
     @if $cs-color-model == ryb {
-      @return ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset);
+      $color: ryb-adjust-hue(ryb-complement($cs-primary), $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return adjust-hue(complement($cs-primary), $cs-hue-offset);
+      $color: adjust-hue(complement($cs-primary), $cs-hue-offset);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 
   // analogic
   @if $cs-scheme == analogic {
-    @return equalize($cs-primary);
+    $color: equalize($cs-primary);
+    @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
   }
 
   // accented-analogic
   @if $cs-scheme == accented-analogic {
     @if $cs-color-model == ryb {
-      @return ryb-complement($cs-primary);
+      $color: ryb-complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
     @else {
-      @return complement($cs-primary);
+      $color: complement($cs-primary);
+      @return clean-or-harmonize($color, $cs-harmonize-color, $cs-harmonize-mode, $cs-harmonize-amount);
     }
   }
 }
