@@ -1,4 +1,4 @@
-# Color Schemer
+# Color Schemer [![Gem Version](https://badge.fury.io/rb/color-schemer.png)](http://badge.fury.io/rb/color-schemer)
 
 #### Color schemes made easy with Sass
 
