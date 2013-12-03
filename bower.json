@@ -1,6 +1,6 @@
 {
   "name": "color-schemer",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "main": "stylesheets/_color-schemer.scss",
   "ignore": [
     "**/.*",
