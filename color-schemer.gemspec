@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.5.2}
   s.summary = %q{Create color schemes with ease.}
   s.add_dependency(%q<compass-blend-modes>, ["~> 0.0.2"])
+  s.license = "MIT"
 end
