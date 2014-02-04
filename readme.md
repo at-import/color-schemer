@@ -50,7 +50,7 @@ Drop these functions in wherever you want to use a color from the scheme. You ca
 * `cs-primary()` — primary color.
 * `cs-secondary()` — secondary color.
 * `cs-tertiary()` — tertiary color.
-* `cs-quadrary()` — quadrary color.
+* `cs-quaternary()` — quaternary color.
 
 #### Variables
 
@@ -74,7 +74,7 @@ While you *can* use these functions out of the box you might want to fine-tune t
 $primary: cs-primary();
 $secondary: darken(cs-secondary(), 10%); // too light, darkening this up a bit.
 $tertiary: cs-tertiary();
-$quadrary: cs-quadrary();
+$quaternary: cs-quaternary();
 ```
 
 ## Testing your color scheme
