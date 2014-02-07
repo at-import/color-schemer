@@ -1,0 +1,5 @@
+{
+  "name": "color-schemer",
+  "description": "Color schemer is a robust color toolset for Sass. It expands on the existing Sass color functions and adds things like RYB manipulation, * set-hue, * set-lightness, tint, shade and more. It also leverages these tools adding a full-featured color scheming tool that allows you to set one primary color and create whole color schemes around it.",
+  "tags": ["ui", "design", "colors"]
+}
