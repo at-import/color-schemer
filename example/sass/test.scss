@@ -20,13 +20,27 @@ $cs-brightness-offset: 10;
 $cs-color-model: ryb; // rgb, ryb
 $cs-colorblind: deuteranopia; // protanopia, deuteranopia, tritanopia, protanomaly, deuteranomaly, tritanomaly, monochromacy, amonochromacy
 
+// Do you want to “harmonize” your color scheme with photoshop-like blendmodes?
+// See Erica Schoonmaker's technique: http://methodandcraft.com/videos/creating-harmonious-color-schemes
+// Modes:
+// null (no effect), normal, multiply, lighten, darken, darkercolor, lightercolor, lineardodge, linearburn,
+// difference, screen, exclusion, overlay, softlight, hardlight, colordodge, colorburn, linearlight,
+// vividlight, pinlight, hardmix, colorblend, dissolve, divide, hue, luminosity, saturation, subtract
+$cs-harmonize-mode    : null;
+// What is your common harmonizing color?
+$cs-harmonize-color   : $cs-primary;
+// How strong do you want the effect to be?
+$cs-harmonize-amount  : 10%;
+
 $primary   : cs-primary();
 $secondary : cs-secondary();
 $tertiary  : cs-tertiary();
 $quadrary  : cs-quadrary();
 
+////////////////////////////////////////////
+// Scheme
 @include cs-test(
-  red
+  ($primary, $secondary, $tertiary, $quadrary)
   , $element: ".scheme"
 );
 
@@ -35,19 +49,34 @@ div {
 }
 
 ////////////////////////////////////////////
+// Harmonized
+$cs-harmonize-mode    : multiply;
+$cs-harmonize-color   : $cs-primary;
+$cs-harmonize-amount  : 30%;
+$primary   : cs-primary();
+$secondary : cs-secondary();
+$tertiary  : cs-tertiary();
+$quadrary  : cs-quadrary();
+
+@include cs-test(
+  ($primary, $secondary, $tertiary, $quadrary)
+  , $element: ".harmonized"
+);
+
+////////////////////////////////////////////
 // RYB
 
-@function cs-loop() {
+@function cs-loop-ryb() {
   $list: ();
   @for $i from 0deg through 360deg / 8 {
-    $color: cs-cb(adjust-hue(red, $i * 8));
+    $color: ryb-adjust-hue(red, $i * 8);
     $list: append($list, $color);
   }
   @return $list;
 }
 
 @include cs-test(
-  orange
+  cs-loop-ryb()
   , $element: ".ryb"
 );
 
@@ -55,17 +84,17 @@ div {
 ////////////////////////////////////////////
 // RGB
 
-@function cs-loop() {
+@function cs-loop-rgb() {
   $list: ();
   @for $i from 0deg through 360deg / 8 {
-    $color: cs-cb(adjust-hue(red, $i * 8));
+    $color: adjust-hue(red, $i * 8);
     $list: append($list, $color);
   }
   @return $list;
 }
 
 @include cs-test(
-  yellow
+  cs-loop-rgb()
   , $element: ".rgb"
 );
 
@@ -120,6 +149,24 @@ div {
   , $element: ".mix"
 );
 
+
+////////////////////////////////////////////
+// Color Blind
+
+@function cs-loop-color-blind() {
+  $list: ();
+  @for $i from 0deg through 360deg / 8 {
+    $color: cs-cb(adjust-hue(red, $i * 8));
+    $list: append($list, $color);
+  }
+  @return $list;
+}
+
+@include cs-test(
+  cs-loop-color-blind()
+  , $element: ".cb"
+);
+
 ////////////////////////////////////////////
 
 html {
@@ -132,8 +179,8 @@ body {
   margin: 0;
 }
 div {
-  display: table-row !important;
-  height: auto !important;
+  // display: table-row !important;
+  // height: auto !important;
 }
 
 
