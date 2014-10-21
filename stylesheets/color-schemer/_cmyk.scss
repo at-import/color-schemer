@@ -1,14 +1,142 @@
-@function cmyk($cyan, $magenta, $yellow, $black) {
+@function cmyk($cyan, $magenta, $yellow, $black, $profile: false) {
+
+  // CMYK conversion based on Photoshop® profiles:
+
+  $profile: false !default;
+  $Cy: false !default;
+  $Ma: false !default;
+  $Ye: false !default;
+  $Bl: false !default;
+  
+  // [1] Coated_FOGRA27
+  // [2] Coated_FOGRA39
+  // [3] Coated_GRACoL_2006
+  // [4] Japan_Color_2001_Coated
+  // [5] Japan_Color_2001_Uncoated
+  // [6] Japan_Color_2002_Newspaper
+  // [7] Japan_Color_2003_Web_Coated
+  // [8] Japan_Web_Coated
+  // [9] US_Sheetfed_Coated_v2
+  // [10] US_Sheetfed_Uncoated_v2
+  // [11] US_Web_Coated_v2
+  // [12] US_Web_Uncoated_v2
+  // [13] Uncoated_FOGRA29
+  // [14] Web_Coated_FOGRA28
+  // [15] Web_Coated_SWOP_2006_Grade_3_Paper
+  // [16] Web_Coated_SWOP_2006_Grade_5_Paper
+  // [17] Euroscale_Coated_v2
+  // [18] Euroscale_Unoated_v2
+  // [19] Legacy_Photoshop_Default_CMYK
+
+  @if $profile == Coated_FOGRA27 { // [1]
+    $Cy: rgb(0, 158, 224);
+    $Ma: rgb(226, 0, 122);
+    $Ye: rgb(255, 237, 0);
+    $Bl: rgb(26, 23, 27);
+  } @else if $profile == Coated_FOGRA39 { // [2]
+    $Cy: rgb(0, 159, 227);
+    $Ma: rgb(230, 0, 126);
+    $Ye: rgb(255, 237, 0);
+    $Bl: rgb(29, 29, 27);
+  } @else if $profile == Coated_GRACoL_2006 { // [3]
+    $Cy: rgb(0, 159, 227);
+    $Ma: rgb(229, 0, 120);
+    $Ye: rgb(255, 237, 0);
+    $Bl: rgb(27, 27, 26);
+  } @else if $profile == Japan_Color_2001_Coated { // [4]
+    $Cy: rgb(0, 161, 233);
+    $Ma: rgb(228, 0, 127);
+    $Ye: rgb(255, 241, 0);
+    $Bl: rgb(35, 25, 22);
+  } @else if $profile == Japan_Color_2001_Uncoated { // [5]
+    $Cy: rgb(0, 157, 226);
+    $Ma: rgb(230, 49, 131);
+    $Ye: rgb(255, 245, 15);
+    $Bl: rgb(68, 63, 53);
+  } @else if $profile == Japan_Color_2002_Newspaper { // [6]
+    $Cy: rgb(0, 183, 244);
+    $Ma: rgb(246, 86, 160);
+    $Ye: rgb(255, 243, 38);
+    $Bl: rgb(32, 19, 0);
+  } @else if $profile == Japan_Color_2003_Web_Coated { // [7]
+    $Cy: rgb(0, 155, 228);
+    $Ma: rgb(232, 0, 128);
+    $Ye: rgb(255, 240, 0);
+    $Bl: rgb(25, 20, 15);
+  } @else if $profile == Japan_Web_Coated { // [8]
+    $Cy: rgb(0, 156, 222);
+    $Ma: rgb(218, 0, 128);
+    $Ye: rgb(255, 239, 0);
+    $Bl: rgb(31, 20, 15);
+  } @else if $profile == US_Sheetfed_Coated_v2 { // [9]
+    $Cy: rgb(0, 163, 230);
+    $Ma: rgb(227, 33, 126);
+    $Ye: rgb(255, 237, 0);
+    $Bl: rgb(28, 27, 26);
+  } @else if $profile == US_Sheetfed_Uncoated_v2 { // [10]
+    $Cy: rgb(0, 162, 227);
+    $Ma: rgb(220, 23, 111);
+    $Ye: rgb(255, 236, 0);
+    $Bl: rgb(32, 34, 29);
+  } @else if $profile == US_Web_Coated_v2 { // [11]
+    $Cy: rgb(0, 174, 239);
+    $Ma: rgb(236, 0, 140);
+    $Ye: rgb(255, 242, 0);
+    $Bl: rgb(35, 31, 32);
+  } @else if $profile == US_Web_Uncoated_v2 { // [12]
+    $Cy: rgb(0, 162, 227);
+    $Ma: rgb(220, 23, 111);
+    $Ye: rgb(255, 236, 0);
+    $Bl: rgb(32, 34, 29);
+  } @else if $profile == Uncoated_FOGRA29 { // [13]
+    $Cy: rgb(0, 157, 222);
+    $Ma: rgb(228, 46, 135);
+    $Ye: rgb(255, 232, 0);
+    $Bl: rgb(46, 32, 20);
+  } @else if $profile == Web_Coated_FOGRA28 { // [14]
+    $Cy: rgb(0, 165, 232);
+    $Ma: rgb(227, 0, 124);
+    $Ye: rgb(255, 233, 0);
+    $Bl: rgb(27, 24, 25);
+  } @else if $profile == Web_Coated_SWOP_2006_Grade_3_Paper { // [15]
+    $Cy: rgb(0, 170, 234);
+    $Ma: rgb(233, 0, 131);
+    $Ye: rgb(255, 242, 0);
+    $Bl: rgb(36, 36, 37);
+  } @else if $profile == Web_Coated_SWOP_2006_Grade_5_Paper { // [16]
+    $Cy: rgb(0, 174, 240);
+    $Ma: rgb(236, 4, 140);
+    $Ye: rgb(255, 242, 0);
+    $Bl: rgb(40, 37, 39);
+  } @else if $profile == Euroscale_Coated_v2 { // [17]
+    $Cy: rgb(0, 166, 235);
+    $Ma: rgb(229, 0, 131);
+    $Ye: rgb(255, 237, 0);
+    $Bl: rgb(27, 28, 32);
+  } @else if $profile == Euroscale_Uncoated_v2 { // [18]
+    $Cy: rgb(0, 185, 243);
+    $Ma: rgb(232, 42, 140);
+    $Ye: rgb(255, 240, 13);
+    $Bl: rgb(56, 58, 59);
+  } @else if $profile == Legacy_Photoshop_Default_CMYK { // [19]
+    $Cy: rgb(0, 168, 236);
+    $Ma: rgb(227, 0, 123);
+    $Ye: rgb(248, 244, 0);
+    $Bl: rgb(0, 0, 0);
+  } @else { // Use default (US_Web_Coated_v2)
+    $Cy: rgb(0, 174, 239);
+    $Ma: rgb(236, 0, 140);
+    $Ye: rgb(255, 242, 0);
+    $Bl: rgb(35, 31, 32);
+  }
 
   // Get the color values out of white
-  $cyan    : mix(cyan   , white, $cyan   );
-  $magenta : mix(magenta, white, $magenta);
-  $yellow  : mix(yellow , white, $yellow );
-  $black   : mix(black  , white, $black  );
+  $cyan    : mix($Cy, white, $cyan   );
+  $magenta : mix($Ma, white, $magenta);
+  $yellow  : mix($Ye, white, $yellow );
+  $black   : mix($Bl, white, $black  );
 
   // Subtract the colors from white
   $color: white - invert($cyan) - invert($magenta) - invert($yellow) - invert($black);
-
-
   @return $color;
 }
